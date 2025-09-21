@@ -3,12 +3,12 @@ using UnityEngine.InputSystem;
 
 public class CarController : MonoBehaviour, IMovementController
 {
-    [SerializeField] private float _rotationSpeed = 10f;
-
     private Rigidbody _rb;
     private InputAction _moveAction;
     [SerializeField] private WheelCollider[] _wheelColliders;
 
+    private float _currentSteerAngle = 0;
+    private float _targetSteerAngle;
     private void Start()
     {
         _moveAction = InputSystem.actions.FindAction("Move");
@@ -17,9 +17,31 @@ public class CarController : MonoBehaviour, IMovementController
 
     private void Update()
     {
-        float steerAngle = _moveAction.ReadValue<Vector2>().x * 30;
-        _wheelColliders[0].steerAngle = steerAngle;
-        _wheelColliders[1].steerAngle = steerAngle;
+        _targetSteerAngle = _moveAction.ReadValue<Vector2>().x * 10;
+        _currentSteerAngle = Mathf.Lerp(_currentSteerAngle, _targetSteerAngle, Time.deltaTime * 5);
+
+        _wheelColliders[0].steerAngle = _currentSteerAngle;
+        _wheelColliders[1].steerAngle = _currentSteerAngle;
+
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            WheelFrictionCurve sidewaysFriction = _wheelColliders[2].sidewaysFriction;
+            sidewaysFriction.stiffness = 1.2f;
+            _wheelColliders[2].sidewaysFriction = sidewaysFriction;
+            _wheelColliders[2].sidewaysFriction = sidewaysFriction;
+
+        }
+
+        if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            WheelFrictionCurve sidewaysFriction = _wheelColliders[2].sidewaysFriction;
+            sidewaysFriction.stiffness = 2;
+            _wheelColliders[2].sidewaysFriction = sidewaysFriction;
+            _wheelColliders[2].sidewaysFriction = sidewaysFriction;
+
+
+            _rb.AddForce(transform.forward * 100000, ForceMode.Impulse);
+        }
     }
 
     public Vector3 GetMovement()
