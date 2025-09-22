@@ -694,6 +694,7 @@ GameObject:
   - component: {fileID: 965271176}
   - component: {fileID: 965271175}
   - component: {fileID: 965271174}
+  - component: {fileID: 965271179}
   m_Layer: 0
   m_Name: Car
   m_TagString: Untagged
@@ -833,7 +834,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f2cfbf445375334b90040f813724d72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Move
-  speed: 500000
+  speed: 250000
   maxSpeed: 30
 --- !u!114 &965271177
 MonoBehaviour:
@@ -859,12 +860,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b11d75f134a97c246bfc701100663068, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CarController
-  _rotationSpeed: 100
   _wheelColliders:
   - {fileID: 907854053}
   - {fileID: 149492353}
   - {fileID: 1148477526}
   - {fileID: 463667714}
+--- !u!114 &965271179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 965271169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c298441a0108b2a488f2bc41354d92d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Nitro
+  nitroBoost: 15000
 --- !u!1 &980488420
 GameObject:
   m_ObjectHideFlags: 0

@@ -20,7 +20,9 @@ public class Move : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_rb.linearVelocity.x > maxSpeed) return;
+        Debug.Log(_rb.linearVelocity.x);
+
+        if (Mathf.Abs(_rb.linearVelocity.magnitude) > maxSpeed) return;
 
         _rb.AddForce(_controller.GetMovement() * speed * Time.deltaTime);
     }
