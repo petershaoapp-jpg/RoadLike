@@ -50,6 +50,12 @@ ExportedObj/
 *.opendb
 *.VC.db
 
+# IDE generated files
+.vsconfig
+
+# Recovery files
+/Assets/_Recovery*
+
 # Unity3D generated meta files
 *.pidb.meta
 *.pdb.meta
