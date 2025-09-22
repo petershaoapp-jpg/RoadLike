@@ -27,4 +27,9 @@ public class CarController : MonoBehaviour, IMovementController
     {
         return transform.forward * _moveAction.ReadValue<Vector2>().y;
     }
+
+    public float GetMaxSpeed()
+    {
+        return PlayerData.maxSpeed;
+    }
 }
