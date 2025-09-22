@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class PlayerDie : Die
+public class PlayerDie : MonoBehaviour, IDie
 {
-    public override void OnDie()
+    public void OnDie()
     {
         // TODO (Peter): Reset scene when player dies
         throw new System.NotImplementedException();

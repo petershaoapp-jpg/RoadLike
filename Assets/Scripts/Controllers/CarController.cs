@@ -3,12 +3,13 @@ using UnityEngine.InputSystem;
 
 public class CarController : MonoBehaviour, IMovementController
 {
-    private Rigidbody _rb;
-    private InputAction _moveAction;
     [SerializeField] private WheelCollider[] _wheelColliders;
 
+    private Rigidbody _rb;
+    private InputAction _moveAction;
     private float _currentSteerAngle = 0;
     private float _targetSteerAngle;
+
     private void Start()
     {
         _moveAction = InputSystem.actions.FindAction("Move");

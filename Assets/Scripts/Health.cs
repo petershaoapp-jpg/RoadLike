@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Die))]
+[RequireComponent(typeof(IDie))]
 public class Health : MonoBehaviour
 {
     // TODO (Peter and Jake) (choose whatever you guys want to work on):
