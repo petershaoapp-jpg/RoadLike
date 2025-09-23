@@ -22,7 +22,7 @@ public class Move : MonoBehaviour
     {
         Debug.Log(_rb.linearVelocity.magnitude);
 
-        if (Mathf.Abs(_rb.linearVelocity.magnitude) > _controller.GetMaxSpeed()) return;
+        if (Mathf.Abs(_rb.linearVelocity.magnitude) > maxSpeed) return;
 
         _rb.AddForce(_controller.GetMovement() * speed * Time.deltaTime);
     }
