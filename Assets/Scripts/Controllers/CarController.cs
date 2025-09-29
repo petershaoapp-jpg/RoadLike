@@ -8,14 +8,18 @@ public class CarController : MonoBehaviour, IMovementController
     private InputAction _moveAction;
     private float _currentSteerAngle = 0;
     private float _targetSteerAngle;
+    private Rigidbody _rb;
 
     private void Start()
     {
         _moveAction = InputSystem.actions.FindAction("Move");
+        _rb = GetComponent<Rigidbody>();
     }
 
     private void Update()
     {
+        
+
         _targetSteerAngle = _moveAction.ReadValue<Vector2>().x * 10;
         _currentSteerAngle = Mathf.Lerp(_currentSteerAngle, _targetSteerAngle, Time.deltaTime * 5);
 
@@ -26,5 +30,10 @@ public class CarController : MonoBehaviour, IMovementController
     public Vector3 GetMovement()
     {
         return transform.forward * _moveAction.ReadValue<Vector2>().y;
+    }
+
+    public float GetMaxSpeed()
+    {
+        return PlayerData.maxSpeed;
     }
 }

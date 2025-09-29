@@ -4,7 +4,7 @@ public class EnemyDie : MonoBehaviour, IDie
 {
     public void OnDie()
     {
-        // TODO (Jake): Destroy gameobject this script belongs to on player death
-        throw new System.NotImplementedException();
+        Debug.Log("[INFO]: Enemy died");
+        Destroy(gameObject); // Destroying the attached game object by passing gameObject
     }
 }
