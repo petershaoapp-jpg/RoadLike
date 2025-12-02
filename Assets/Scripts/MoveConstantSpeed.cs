@@ -5,6 +5,7 @@ public class MoveConstantSpeed : MonoBehaviour
 {
     private IMovementController _controller;
     private Rigidbody _rb;
+    [SerializeField] private float speed = 10f;
 
     private void Start()
     {

@@ -8,7 +8,6 @@ public class TitleScreenUI : MonoBehaviour
 
   public void Play()
   {
-
     data.upgrades = new List<Upgrade>();
     SceneManager.LoadScene(1);
   }

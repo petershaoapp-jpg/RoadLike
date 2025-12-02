@@ -3,6 +3,8 @@ using UnityEngine.InputSystem;
 
 public class CarControllerArcade : MonoBehaviour, IMovementController
 {
+    [SerializeField] private PlayerData data;
+
     [Header("Wheels (0/1 = Front, 2/3 = Rear)")]
     [SerializeField] private WheelCollider[] _wheelColliders;
 
@@ -162,5 +164,5 @@ public class CarControllerArcade : MonoBehaviour, IMovementController
 
     // Keep your interface alive:
     public Vector3 GetMovement() => transform.forward * _throttle;
-    public float GetMaxSpeed() => PlayerData.maxSpeed; // or return maxSpeedKPH if you want to consolidate
+    public float GetMaxSpeed() => data.maxSpeed; // or return maxSpeedKPH if you want to consolidate
 }

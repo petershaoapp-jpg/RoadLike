@@ -95,6 +95,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Unflip",
+                    "type": "Button",
+                    "id": "d9769354-47bb-453b-a9f0-e0b78de18ff9",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -491,6 +500,28 @@
                     "processors": "",
                     "groups": ";Keyboard&Mouse;Gamepad",
                     "action": "Nitro",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e32bdc36-e69a-40b3-b1fc-ea44ffab616c",
+                    "path": "<Keyboard>/u",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Unflip",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c8d4b856-e425-447f-aec4-9e680388a5b3",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Unflip",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

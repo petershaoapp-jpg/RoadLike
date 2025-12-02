@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -7,14 +6,14 @@ public class Nitro : MonoBehaviour
 {
     [SerializeField] private float nitroBoost = 500000;
 
-    private int _nitros;
+    public float nitros;
     private InputAction _nitroInput;
     private Rigidbody _rb;
+    [SerializeField] private PlayerData data;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
     {
-        _nitros = PlayerData.maxNitros;
+        nitros = data.maxNitros;
         _nitroInput = InputSystem.actions.FindAction("Nitro");
         _rb = GetComponent<Rigidbody>();
 
@@ -23,9 +22,9 @@ public class Nitro : MonoBehaviour
 
     private void ActivateNitro(InputAction.CallbackContext callbackContext)
     {
-        if (_nitros > 0)
+        if (nitros >= 1)
         {
-            _nitros--;
+            nitros--;
             _rb.AddForce(transform.forward * nitroBoost, ForceMode.Impulse);
             StartCoroutine(ReplenishNitro());
         }
@@ -33,7 +32,9 @@ public class Nitro : MonoBehaviour
 
     private IEnumerator ReplenishNitro()
     {
-        yield return new WaitForSeconds(PlayerData.nitroReplenishTime);
-        _nitros++;
+      for (int i = 0; i < 10; i++) {
+        yield return new WaitForSeconds(data.nitroReplenishTime/10);
+        nitros += .1f;
+      }
     }
 }
