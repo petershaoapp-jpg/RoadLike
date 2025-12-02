@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class CarControllerArcade : MonoBehaviour, IMovementController
+public class CarController : MonoBehaviour, IMovementController
 {
     [SerializeField] private PlayerData data;
 
