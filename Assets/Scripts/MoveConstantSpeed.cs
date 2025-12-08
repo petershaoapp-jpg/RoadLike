@@ -5,7 +5,7 @@ public class MoveConstantSpeed : MonoBehaviour
 {
     private IMovementController _controller;
     private Rigidbody _rb;
-    [SerializeField] private float speed = 10f;
+    [SerializeField] private float speed = 50f;
 
     private void Start()
     {
@@ -13,8 +13,11 @@ public class MoveConstantSpeed : MonoBehaviour
         _rb = GetComponent<Rigidbody>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        _rb.linearVelocity = _rb.linearVelocity + (_controller.GetMovement() * Time.deltaTime * 10);
+        Vector3 moveDirection = _controller.GetMovement();
+        Vector3 newVelocity = moveDirection * speed;
+        newVelocity.y = _rb.linearVelocity.y;
+        _rb.linearVelocity = newVelocity;
     }
 }
