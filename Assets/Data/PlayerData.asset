@@ -12,12 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90d83bd692e6b4fbb866d1da0580beb9, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: Assembly-CSharp::PlayerData
-  maxNitros: 7
+  maxNitros: 3
   nitroReplenishTime: 10
   maxSpeed: 30
   maxHealth: 100
-  upgrades:
-  - {fileID: 11400000, guid: c93c27ffc2e7246b6b7f5f8a3ed21cba, type: 2}
-  - {fileID: 11400000, guid: 28589aa3f8b234185ae81fdd815ffc79, type: 2}
-  - {fileID: 11400000, guid: 28589aa3f8b234185ae81fdd815ffc79, type: 2}
-  - {fileID: 11400000, guid: 28589aa3f8b234185ae81fdd815ffc79, type: 2}
+  upgrades: []
