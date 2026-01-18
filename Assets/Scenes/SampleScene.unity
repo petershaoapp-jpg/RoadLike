@@ -1371,7 +1371,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CarController
   data: {fileID: 11400000, guid: 28c6d0b1cf43945088c18d541c0c2d82, type: 2}
-  _wheelColliders:
+  wheelColliders:
   - {fileID: 907854053}
   - {fileID: 149492353}
   - {fileID: 1148477526}
@@ -1595,6 +1595,8 @@ MonoBehaviour:
   songs:
   - {fileID: 8300000, guid: aabbc91ef79f049c4ae8ff106f562965, type: 3}
   - {fileID: 8300000, guid: b8dd33128b0be43af998f3f1159621df, type: 3}
+  - {fileID: 8300000, guid: fb1d3346c60094588a5e1826d7da0ea7, type: 3}
+  - {fileID: 8300000, guid: f64bb8279ed4247e09e1c7f467b0f899, type: 3}
 --- !u!1 &980488420
 GameObject:
   m_ObjectHideFlags: 0
