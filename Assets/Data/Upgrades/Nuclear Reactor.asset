@@ -14,8 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Upgrade
   upgradeName: Nuclear Reactor
   rarity: 4
+  priority: 0
   maxNitros: 0
   nitroReplenishTime: 0.2
   acceleration: 0
   maxSpeed: 0
   maxHealth: 0
+  cardImage: {fileID: 2100000, guid: e7ff93cf537f4425d956380f67c7268d, type: 2}
+  description: '!!'
+  prerequisites: []
