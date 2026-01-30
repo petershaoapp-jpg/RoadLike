@@ -528,14 +528,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeSelector
   upgrades:
-  - {fileID: 11400000, guid: 346c5c6e0759c4a39a103ad8d2aa5f1a, type: 2}
-  - {fileID: 11400000, guid: 027968c66ee704d389d05a5e5e1b5229, type: 2}
-  - {fileID: 11400000, guid: 38c59c76e57ff481f9600b626c4b5180, type: 2}
-  - {fileID: 11400000, guid: d323b1ecc400747d799e0acab7ad6334, type: 2}
-  - {fileID: 11400000, guid: 28589aa3f8b234185ae81fdd815ffc79, type: 2}
-  - {fileID: 11400000, guid: c93c27ffc2e7246b6b7f5f8a3ed21cba, type: 2}
-  - {fileID: 11400000, guid: 8b67b74a2ccca4a7d8b95f55c64c97c5, type: 2}
-  - {fileID: 11400000, guid: 25b0946feefa8470baa3e6b55da2e2ff, type: 2}
+  - {fileID: 11400000, guid: 2ce84d00493f944d7ba7e55c70243fe9, type: 2}
   _playerData: {fileID: 11400000, guid: 28c6d0b1cf43945088c18d541c0c2d82, type: 2}
 --- !u!1 &836493733
 GameObject:
