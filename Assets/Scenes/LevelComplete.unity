@@ -529,6 +529,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeSelector
   upgrades:
   - {fileID: 11400000, guid: 2ce84d00493f944d7ba7e55c70243fe9, type: 2}
+  - {fileID: 11400000, guid: 8118011bbe7114d6790d13d3bd746180, type: 2}
   _playerData: {fileID: 11400000, guid: 28c6d0b1cf43945088c18d541c0c2d82, type: 2}
 --- !u!1 &836493733
 GameObject:
