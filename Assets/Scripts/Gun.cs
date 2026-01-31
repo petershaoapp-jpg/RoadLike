@@ -44,7 +44,7 @@ public class Gun : MonoBehaviour
 
     private IEnumerator Shoot()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(.5f);
 
         Debug.Log("shooting!!");
 
@@ -60,7 +60,7 @@ public class Gun : MonoBehaviour
 
             Health enemyHealth = hit.collider.gameObject.GetComponent<Health>();
 
-            enemyHealth.TakeDamage(10);
+            enemyHealth.TakeDamage(1);
 
             Debug.Log("Hit enemy: " + enemyHealth.health);
         }
