@@ -794,7 +794,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1766030129676107037, guid: e9d800f11112195468e2c77a538fa6c0, type: 3}
+      insertIndex: 9
+      addedObject: {fileID: 1250381356}
   m_SourcePrefab: {fileID: 100100000, guid: e9d800f11112195468e2c77a538fa6c0, type: 3}
 --- !u!1001 &549606078
 PrefabInstance:
@@ -851,7 +854,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1766030129676107037, guid: e9d800f11112195468e2c77a538fa6c0, type: 3}
+      insertIndex: 8
+      addedObject: {fileID: 1186418902}
   m_SourcePrefab: {fileID: 100100000, guid: e9d800f11112195468e2c77a538fa6c0, type: 3}
 --- !u!1 &578692211
 GameObject:
@@ -961,6 +967,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Pause
   _pauseScreen: {fileID: 805026134}
+--- !u!1 &750647987 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1766030129676107037, guid: e9d800f11112195468e2c77a538fa6c0, type: 3}
+  m_PrefabInstance: {fileID: 1272100882}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &750647998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 750647987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6341009b4f71542e19bfa4ca6f4e37cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ZombieAttack
+  damageAmount: 1
 --- !u!1 &758761926
 GameObject:
   m_ObjectHideFlags: 0
@@ -2261,6 +2285,24 @@ WheelCollider:
   m_LayerOverridePriority: 0
   m_Enabled: 1
   m_ProvidesContacts: 0
+--- !u!1 &1186418891 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1766030129676107037, guid: e9d800f11112195468e2c77a538fa6c0, type: 3}
+  m_PrefabInstance: {fileID: 549606078}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1186418902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1186418891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6341009b4f71542e19bfa4ca6f4e37cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ZombieAttack
+  damageAmount: 1
 --- !u!1 &1217050097
 GameObject:
   m_ObjectHideFlags: 0
@@ -2410,6 +2452,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c29685442d3c54112841a01bae60055e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Speedometer
+--- !u!1 &1250381345 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1766030129676107037, guid: e9d800f11112195468e2c77a538fa6c0, type: 3}
+  m_PrefabInstance: {fileID: 546480020}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1250381356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1250381345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6341009b4f71542e19bfa4ca6f4e37cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ZombieAttack
+  damageAmount: 1
+--- !u!1 &1262298373 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1766030129676107037, guid: e9d800f11112195468e2c77a538fa6c0, type: 3}
+  m_PrefabInstance: {fileID: 2075938990}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1262298384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1262298373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6341009b4f71542e19bfa4ca6f4e37cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ZombieAttack
+  damageAmount: 1
 --- !u!1001 &1272100882
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2465,7 +2543,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1766030129676107037, guid: e9d800f11112195468e2c77a538fa6c0, type: 3}
+      insertIndex: 8
+      addedObject: {fileID: 750647998}
   m_SourcePrefab: {fileID: 100100000, guid: e9d800f11112195468e2c77a538fa6c0, type: 3}
 --- !u!1 &1408705260 stripped
 GameObject:
@@ -2562,6 +2643,24 @@ PrefabInstance:
       insertIndex: 9
       addedObject: {fileID: 1408705271}
   m_SourcePrefab: {fileID: 100100000, guid: e9d800f11112195468e2c77a538fa6c0, type: 3}
+--- !u!1 &1547394883 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1766030129676107037, guid: e9d800f11112195468e2c77a538fa6c0, type: 3}
+  m_PrefabInstance: {fileID: 1801954261}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1547394894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1547394883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6341009b4f71542e19bfa4ca6f4e37cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ZombieAttack
+  damageAmount: 1
 --- !u!1 &1662683469
 GameObject:
   m_ObjectHideFlags: 0
@@ -2819,7 +2918,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1766030129676107037, guid: e9d800f11112195468e2c77a538fa6c0, type: 3}
+      insertIndex: 9
+      addedObject: {fileID: 1547394894}
   m_SourcePrefab: {fileID: 100100000, guid: e9d800f11112195468e2c77a538fa6c0, type: 3}
 --- !u!1 &1815916195
 GameObject:
@@ -2969,7 +3071,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1766030129676107037, guid: e9d800f11112195468e2c77a538fa6c0, type: 3}
+      insertIndex: 9
+      addedObject: {fileID: 1262298384}
   m_SourcePrefab: {fileID: 100100000, guid: e9d800f11112195468e2c77a538fa6c0, type: 3}
 --- !u!1 &2107712834
 GameObject:
