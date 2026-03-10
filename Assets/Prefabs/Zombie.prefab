@@ -18,6 +18,8 @@ GameObject:
   - component: {fileID: 7590110613465148694}
   - component: {fileID: 1805716448168784356}
   - component: {fileID: -9215425163801921738}
+  - component: {fileID: 3283812204266706981}
+  - component: {fileID: -6910835906485515558}
   m_Layer: 0
   m_Name: Zombie
   m_TagString: Enemy
@@ -209,3 +211,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Health
   maxHealth: 5
   data: {fileID: 0}
+--- !u!114 &3283812204266706981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1766030129676107037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c903cd36a64ff748abf41c5b6943ebf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ZombieController
+--- !u!114 &-6910835906485515558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1766030129676107037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6341009b4f71542e19bfa4ca6f4e37cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ZombieAttack
+  damageAmount: 1

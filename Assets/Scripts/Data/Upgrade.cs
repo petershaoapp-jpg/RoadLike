@@ -7,7 +7,6 @@ public class Upgrade : ScriptableObject
 {
   public string upgradeName;
   public Rarity rarity;
-  public int priority; // THIS IS IMPORTANT. Please for the love of god set this number higher if you want an upgrade to trigger last. Please.
   public int maxNitros;
   public float nitroReplenishTime;
   public float acceleration;
