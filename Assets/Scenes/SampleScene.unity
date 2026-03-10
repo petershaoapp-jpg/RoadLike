@@ -1144,7 +1144,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 4.895447, y: 5.303406}
+  m_AnchoredPosition: {x: 4.895508, y: 5.303406}
   m_SizeDelta: {x: 32.6362, y: 35.0841}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &805026137
@@ -2467,6 +2467,37 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9d800f11112195468e2c77a538fa6c0, type: 3}
+--- !u!1 &1408705260 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1766030129676107037, guid: e9d800f11112195468e2c77a538fa6c0, type: 3}
+  m_PrefabInstance: {fileID: 1528176033}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1408705271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1408705260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6341009b4f71542e19bfa4ca6f4e37cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ZombieAttack
+  damageAmount: 1
+--- !u!114 &1408705272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1408705260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27f11ec261d624e28a43f7fc6e8cdf3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PatrolZombieController
+  patrolDistance: 10
 --- !u!1001 &1528176033
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2477,7 +2508,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1766030129676107037, guid: e9d800f11112195468e2c77a538fa6c0, type: 3}
       propertyPath: m_Name
-      value: Zombie (6)
+      value: Patrol Zombie
       objectReference: {fileID: 0}
     - target: {fileID: 2250025646619405923, guid: e9d800f11112195468e2c77a538fa6c0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2519,10 +2550,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6316453601953239257, guid: e9d800f11112195468e2c77a538fa6c0, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1766030129676107037, guid: e9d800f11112195468e2c77a538fa6c0, type: 3}
+      insertIndex: 3
+      addedObject: {fileID: 1408705272}
+    - targetCorrespondingSourceObject: {fileID: 1766030129676107037, guid: e9d800f11112195468e2c77a538fa6c0, type: 3}
+      insertIndex: 9
+      addedObject: {fileID: 1408705271}
   m_SourcePrefab: {fileID: 100100000, guid: e9d800f11112195468e2c77a538fa6c0, type: 3}
 --- !u!1 &1662683469
 GameObject:
