@@ -7,7 +7,7 @@ public class UpgradeManager : MonoBehaviour
   private void Start()
   {
     data.maxSpeed = 30;
-    data.maxHealth = 100;
+    data.maxHealth = 20;
     data.nitroReplenishTime = 10;
     data.maxNitros = 3;
 

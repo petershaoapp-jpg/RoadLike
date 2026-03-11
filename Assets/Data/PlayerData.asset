@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerData
   upgrades:
   - {fileID: 11400000, guid: 2ce84d00493f944d7ba7e55c70243fe9, type: 2}
-  maxHealth: 100
+  - {fileID: 11400000, guid: 8118011bbe7114d6790d13d3bd746180, type: 2}
+  maxHealth: 20
   luck: 0
   maxSpeed: 50
   maxNitros: 3
