@@ -52,7 +52,7 @@ public class Health : MonoBehaviour
 
     private IEnumerator DamageEffect()
     {
-        Color originalColor = _meshRenderer.material.color;
+        Color originalColor = Color.gray;
         _meshRenderer.material.color = Color.red;
         yield return new WaitForSeconds(.1f);
         _meshRenderer.material.color = originalColor;
