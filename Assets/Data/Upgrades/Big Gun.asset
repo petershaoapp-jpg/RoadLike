@@ -10,16 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6e501f47748c14134a2398cdfa63328e, type: 3}
-  m_Name: Speed
+  m_Name: Big Gun
   m_EditorClassIdentifier: Assembly-CSharp::Upgrade
-  upgradeName: Speed
+  upgradeName: Big Gun
   rarity: 0
-  priority: 0
   maxNitros: 0
   nitroReplenishTime: 0
   acceleration: 0
-  maxSpeed: 20
+  maxSpeed: 0
   maxHealth: 0
-  cardImage: {fileID: 2100000, guid: 73472f4b9e00b49f794f512cb20d67ea, type: 2}
-  description: Increase speed cap
+  cardImage: {fileID: 2100000, guid: 349570d1c7f9049fb96c1bfb48fd5e5a, type: 2}
+  description: +2 Damage
   prerequisites: []

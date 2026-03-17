@@ -530,6 +530,10 @@ MonoBehaviour:
   upgrades:
   - {fileID: 11400000, guid: 2ce84d00493f944d7ba7e55c70243fe9, type: 2}
   - {fileID: 11400000, guid: 8118011bbe7114d6790d13d3bd746180, type: 2}
+  - {fileID: 11400000, guid: 66bc0640fc3834c98a87cea051774300, type: 2}
+  - {fileID: 11400000, guid: 3a2912464ddba4513b24da6b759481d1, type: 2}
+  - {fileID: 11400000, guid: 9e37e448b46ea49b6b772cf82b137edb, type: 2}
+  - {fileID: 11400000, guid: 57fc8d42c40c940e089fa58f9d59e47c, type: 2}
   _playerData: {fileID: 11400000, guid: 28c6d0b1cf43945088c18d541c0c2d82, type: 2}
 --- !u!1 &836493733
 GameObject:

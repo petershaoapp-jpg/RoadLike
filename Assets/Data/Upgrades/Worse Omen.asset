@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6e501f47748c14134a2398cdfa63328e, type: 3}
-  m_Name: Gun
+  m_Name: Worse Omen
   m_EditorClassIdentifier: Assembly-CSharp::Upgrade
-  upgradeName: '[Gun upgrade]'
-  rarity: 0
-  priority: 0
+  upgradeName: Worse Omen
+  rarity: 1
   maxNitros: 0
   nitroReplenishTime: 0
   acceleration: 0
   maxSpeed: 0
   maxHealth: 0
-  cardImage: {fileID: 2100000, guid: 349570d1c7f9049fb96c1bfb48fd5e5a, type: 2}
-  description: Gun
-  prerequisites: []
+  cardImage: {fileID: 2100000, guid: 2e783277f1e47494fb2184f73a62c7c9, type: 2}
+  description: +10 Crit Damage
+  prerequisites:
+  - {fileID: 11400000, guid: 66bc0640fc3834c98a87cea051774300, type: 2}

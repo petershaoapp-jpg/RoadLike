@@ -1532,6 +1532,7 @@ GameObject:
   - component: {fileID: 965271182}
   - component: {fileID: 965271185}
   - component: {fileID: 965271184}
+  - component: {fileID: 965271186}
   m_Layer: 0
   m_Name: Car
   m_TagString: Untagged
@@ -1925,6 +1926,20 @@ MonoBehaviour:
   - {fileID: 8300000, guid: aabbc91ef79f049c4ae8ff106f562965, type: 3}
   - {fileID: 8300000, guid: b8dd33128b0be43af998f3f1159621df, type: 3}
   - {fileID: 8300000, guid: f64bb8279ed4247e09e1c7f467b0f899, type: 3}
+--- !u!114 &965271186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 965271169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d30155b95a9c149f6b14eca57857e86e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UpgradeEffects
+  playerData: {fileID: 11400000, guid: 28c6d0b1cf43945088c18d541c0c2d82, type: 2}
+  upgradeNames: []
 --- !u!1 &980488420
 GameObject:
   m_ObjectHideFlags: 0
