@@ -9,6 +9,13 @@ public class UpgradeEffects : MonoBehaviour
 
     private void Awake()
     {
+        playerData.maxSpeed = 30;
+        playerData.maxHealth = 20;
+        playerData.nitroReplenishTime = 10;
+        playerData.maxNitros = 3;
+        playerData.critChance = 20;
+        playerData.critDamage = 2;
+        
         upgradeNames = playerData.upgrades.ConvertAll(data => data.name);
 
         if (upgradeNames.Contains("Bad Omen"))

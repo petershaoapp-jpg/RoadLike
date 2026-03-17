@@ -56,7 +56,7 @@ public class Gun : MonoBehaviour
 
             float damage = playerData.attack;
 
-            if (Random.Range(1, 1000) < playerData.critChange)
+            if (Random.Range(1, 100) < playerData.critChance)
             {
                 damage *= playerData.critDamage;
                 

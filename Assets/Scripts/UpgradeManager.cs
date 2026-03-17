@@ -6,11 +6,6 @@ public class UpgradeManager : MonoBehaviour
 
   private void Start()
   {
-    data.maxSpeed = 30;
-    data.maxHealth = 20;
-    data.nitroReplenishTime = 10;
-    data.maxNitros = 3;
-
     foreach (Upgrade upgrade in data.upgrades) {
       data.maxNitros += upgrade.maxNitros;
       data.nitroReplenishTime *= upgrade.nitroReplenishTime;

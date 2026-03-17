@@ -25,6 +25,6 @@ public class PlayerData : ScriptableObject
     
     // Damage stats
     public float attack = 5;
-    public float critChange = 20;
+    public float critChance = 20;
     public float critDamage = 2;
 }

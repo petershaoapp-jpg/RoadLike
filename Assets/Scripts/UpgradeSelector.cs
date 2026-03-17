@@ -52,9 +52,13 @@ public class UpgradeSelector : MonoBehaviour
 
         List<Upgrade> pool = GetAvailableUpgrades().Where(u => u.rarity == rarity).ToList();
 
-
         int index = Random.Range(0,pool.Count);
 
-        return pool[index];
+        if (pool[index] != null || GetAvailableUpgrades().Count == 0)
+        {
+            return pool[index];
+        }
+        
+        return SelectUpgrade(bonusRarityChance);
     }
 }
