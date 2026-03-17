@@ -1,11 +1,13 @@
+using System;
 using System.Collections;
 using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Gun : MonoBehaviour
 {
-    private bool _hasTarget;
-
+    [SerializeField] private PlayerData playerData;
+    
     private void Start()
     {
         StartCoroutine(Shoot());
@@ -32,21 +34,15 @@ public class Gun : MonoBehaviour
             }
         }
 
-        if (target == null)
-        {
-            _hasTarget = false;
-        } else
+        if (target != null)
         {
             transform.LookAt(target.transform);
-            _hasTarget = true;
         }
     }
 
     private IEnumerator Shoot()
     {
         yield return new WaitForSeconds(.5f);
-
-        Debug.Log("shooting!!");
 
         RaycastHit hit;
 
@@ -56,13 +52,20 @@ public class Gun : MonoBehaviour
 
         if (hit.collider && hit.collider.gameObject.CompareTag("Enemy"))
         {
-            Debug.Log("HIT!!" + hit.collider.gameObject.name);
-
             Health enemyHealth = hit.collider.gameObject.GetComponent<Health>();
 
-            enemyHealth.TakeDamage(1);
+            float damage = playerData.attack;
 
-            Debug.Log("Hit enemy: " + enemyHealth.health);
+            if (Random.Range(1, 1000) < playerData.critChange)
+            {
+                damage *= playerData.critDamage;
+                
+                Debug.Log("CRITICAL HIT!");
+            } else Debug.Log("NONCRIT");
+            
+            Debug.Log(damage);
+            
+            enemyHealth.TakeDamage(damage);
         }
 
         StartCoroutine(Shoot());

@@ -22,4 +22,9 @@ public class PlayerData : ScriptableObject
     // Nitro stats
     public int maxNitros = 3;
     public float nitroReplenishTime = 10;
+    
+    // Damage stats
+    public float attack = 5;
+    public float critChange = 20;
+    public float critDamage = 2;
 }

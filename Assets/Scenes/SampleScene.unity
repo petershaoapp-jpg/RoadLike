@@ -1508,6 +1508,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34d62c2fb318b4306952e5c78a64a76e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Gun
+  playerData: {fileID: 11400000, guid: 28c6d0b1cf43945088c18d541c0c2d82, type: 2}
 --- !u!1 &965271169
 GameObject:
   m_ObjectHideFlags: 0
@@ -1923,7 +1924,6 @@ MonoBehaviour:
   songs:
   - {fileID: 8300000, guid: aabbc91ef79f049c4ae8ff106f562965, type: 3}
   - {fileID: 8300000, guid: b8dd33128b0be43af998f3f1159621df, type: 3}
-  - {fileID: 8300000, guid: fb1d3346c60094588a5e1826d7da0ea7, type: 3}
   - {fileID: 8300000, guid: f64bb8279ed4247e09e1c7f467b0f899, type: 3}
 --- !u!1 &980488420
 GameObject:

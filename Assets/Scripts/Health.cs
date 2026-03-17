@@ -9,7 +9,6 @@ public class Health : MonoBehaviour
     public float health { get; private set; } // public to get, not public to set
 
     private IDie _dieScript;
-    private bool _isEnemy = true;
     private MeshRenderer _meshRenderer;
 
     private void Awake()
@@ -20,7 +19,6 @@ public class Health : MonoBehaviour
         
         if (gameObject.name == "Car") {
           maxHealth =  data.maxHealth;
-          _isEnemy = false;
         }
     }
 
@@ -35,7 +33,7 @@ public class Health : MonoBehaviour
         }
     }
 
-    public void TakeDamage(int amount)
+    public void TakeDamage(float amount)
     {
         if (amount <= 0) return;
 
