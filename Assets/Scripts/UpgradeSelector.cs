@@ -54,10 +54,19 @@ public class UpgradeSelector : MonoBehaviour
 
         int index = Random.Range(0,pool.Count);
 
-        if (pool[index] != null || GetAvailableUpgrades().Count == 0)
+        if (index < pool.Count)
         {
+            Debug.Log("SELECTED UPGRADE");
+            Debug.Log(pool.Count);
+            Debug.Log(GetAvailableUpgrades().Count);
+            Debug.Log(index);
+            Debug.Log(pool[index].name);
+            Debug.Log(pool[index].rarity);
+            Debug.Log("###########");
             return pool[index];
         }
+
+        if (GetAvailableUpgrades().Count == 0) return null;
         
         return SelectUpgrade(bonusRarityChance);
     }
