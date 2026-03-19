@@ -56,13 +56,6 @@ public class UpgradeSelector : MonoBehaviour
 
         if (index < pool.Count)
         {
-            Debug.Log("SELECTED UPGRADE");
-            Debug.Log(pool.Count);
-            Debug.Log(GetAvailableUpgrades().Count);
-            Debug.Log(index);
-            Debug.Log(pool[index].name);
-            Debug.Log(pool[index].rarity);
-            Debug.Log("###########");
             return pool[index];
         }
 

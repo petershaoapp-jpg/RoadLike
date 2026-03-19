@@ -37,5 +37,25 @@ public class UpgradeEffects : MonoBehaviour
         {
             playerData.critDamage += .1f;
         }
+
+        if (upgradeNames.Contains("Sharp Shooter"))
+        {
+            playerData.critChance += 5;
+        }
+
+        if (upgradeNames.Contains("Sniper"))
+        {
+            playerData.critChance += 10;
+        }
+
+        if (upgradeNames.Contains("Marksman"))
+        {
+            playerData.critChance += 15;
+        }
+
+        if (upgradeNames.Contains("William Tell"))
+        {
+            playerData.critChance += 20;
+        }
     }
 }
