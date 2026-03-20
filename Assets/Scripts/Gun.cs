@@ -62,7 +62,7 @@ public class Gun : MonoBehaviour
 
             if (Random.Range(1, 100) < playerData.critChance)
             {
-                damage *= playerData.critDamage;
+                damage *= playerData.critDamage / 100;
                 
                 Debug.Log("CRITICAL HIT!");
             }
@@ -75,8 +75,6 @@ public class Gun : MonoBehaviour
                 
                 Debug.Log("NONCRIT");
             }
-
-            
             
             Debug.Log("DAMAGE: " + damage);
             

@@ -17,6 +17,7 @@ public class UpgradeEffects : MonoBehaviour
         playerData.critChance = 20;
         playerData.critDamage = 2;
         playerData.attack = 5;
+        playerData.speed = 0;
         
         upgradeNames = playerData.upgrades.ConvertAll(data => data.name);
 
@@ -27,22 +28,22 @@ public class UpgradeEffects : MonoBehaviour
         
         if (upgradeNames.Contains("Bad Omen"))
         {
-            playerData.critDamage += .1f;
+            playerData.critDamage += 10;
         }
 
         if (upgradeNames.Contains("Worse Omen"))
         {
-            playerData.critDamage += .1f;
+            playerData.critDamage += 10;
         }
 
         if (upgradeNames.Contains("Herald"))
         {
-            playerData.critDamage += .1f;
+            playerData.critDamage += 10;
         }
         
         if (upgradeNames.Contains("Harbinger"))
         {
-            playerData.critDamage += .1f;
+            playerData.critDamage += 10;
         }
 
         if (upgradeNames.Contains("Sharp Shooter"))
@@ -64,12 +65,30 @@ public class UpgradeEffects : MonoBehaviour
         {
             playerData.critChance += 20;
         }
+
+        if (upgradeNames.Contains("Four-leaf Clover"))
+        {
+            playerData.luck += 5;
+        }
+
+        if (upgradeNames.Contains("Jackpot!"))
+        {
+            playerData.critChance += 7;
+            playerData.critDamage += 7;
+            playerData.luck += 7;
+        }
         
-        // LATE PHASE
+        // Late trigger
+        if (upgradeNames.Contains("Horseshoe"))
+        {
+            playerData.speed += playerData.luck;
+        }
+        
+        // Last trigger
         if (upgradeNames.Contains("Lust"))
         {
             playerData.critChance /= 2;
-            playerData.critDamage += 5;
+            playerData.critDamage += 500;
         }
     }
 }

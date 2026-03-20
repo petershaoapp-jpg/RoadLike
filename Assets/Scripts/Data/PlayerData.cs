@@ -14,9 +14,10 @@ public class PlayerData : ScriptableObject
     public int maxHealth = 20;
     // TODO: Add regeneration (regenerates n% of health per second)
     public int luck = 0;
-
+    
     // Car stats
     public float maxSpeed = 30;
+    public float speed = 0;
     // TODO: Add "handling" (how easy it is to control car)
 
     // Nitro stats

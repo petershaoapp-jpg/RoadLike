@@ -20,6 +20,8 @@ public class Move : MonoBehaviour
         if (gameObject.name == "Car") {
           maxSpeed = data.maxSpeed;
         }
+        
+        speed += data.speed;
     }
 
     // Update is called once per frame

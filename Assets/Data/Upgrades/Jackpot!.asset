@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6e501f47748c14134a2398cdfa63328e, type: 3}
-  m_Name: Better Wheels
+  m_Name: Jackpot!
   m_EditorClassIdentifier: Assembly-CSharp::Upgrade
-  upgradeName: Better Wheels
-  rarity: 0
-  cardImage: {fileID: 2100000, guid: 73472f4b9e00b49f794f512cb20d67ea, type: 2}
-  description: +5 Acceleration
+  upgradeName: Jackpot!
+  rarity: 3
+  cardImage: {fileID: 0}
+  description: +7 Luck\n+7 Crit Chance\n+7 Crit Damage
   prerequisites: []
