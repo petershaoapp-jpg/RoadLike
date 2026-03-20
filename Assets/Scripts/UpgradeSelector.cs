@@ -5,7 +5,8 @@ using UnityEngine;
 public class UpgradeSelector : MonoBehaviour
 {
     public List<Upgrade> upgrades;
-
+    public List<Upgrade> shown;
+    
     [SerializeField] private PlayerData _playerData;
 
     public List<Upgrade> GetAvailableUpgrades()
@@ -54,8 +55,9 @@ public class UpgradeSelector : MonoBehaviour
 
         int index = Random.Range(0,pool.Count);
 
-        if (index < pool.Count)
+        if (index < pool.Count && !shown.Contains(pool[index]))
         {
+            shown.Add(pool[index]);
             return pool[index];
         }
 
