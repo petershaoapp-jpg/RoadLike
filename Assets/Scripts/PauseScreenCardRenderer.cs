@@ -10,7 +10,7 @@ public class PauseScreenCardRenderer : MonoBehaviour
     private void Start()
     {
         int x = 300;
-        int y = 100;
+        int y = 300;
 
         foreach (Upgrade upgrade in playerData.upgrades)
         {
