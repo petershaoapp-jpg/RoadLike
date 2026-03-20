@@ -9,15 +9,22 @@ public class UpgradeEffects : MonoBehaviour
 
     private void Awake()
     {
+        // Base stats
         playerData.maxSpeed = 30;
         playerData.maxHealth = 20;
         playerData.nitroReplenishTime = 10;
         playerData.maxNitros = 3;
         playerData.critChance = 20;
         playerData.critDamage = 2;
+        playerData.attack = 5;
         
         upgradeNames = playerData.upgrades.ConvertAll(data => data.name);
 
+        if (upgradeNames.Contains("Big Gun"))
+        {
+            playerData.attack += 2;
+        }
+        
         if (upgradeNames.Contains("Bad Omen"))
         {
             playerData.critDamage += .1f;
@@ -56,6 +63,13 @@ public class UpgradeEffects : MonoBehaviour
         if (upgradeNames.Contains("William Tell"))
         {
             playerData.critChance += 20;
+        }
+        
+        // LATE PHASE
+        if (upgradeNames.Contains("Lust"))
+        {
+            playerData.critChance /= 2;
+            playerData.critDamage += 5;
         }
     }
 }

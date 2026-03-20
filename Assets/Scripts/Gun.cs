@@ -1,4 +1,4 @@
-using System;
+using System.Collections.Generic;
 using System.Collections;
 using System.Linq;
 using UnityEngine;
@@ -8,9 +8,13 @@ public class Gun : MonoBehaviour
 {
     [SerializeField] private PlayerData playerData;
     
+    public List<string> upgradeNames;
+    
     private void Start()
     {
         StartCoroutine(Shoot());
+        
+        upgradeNames = playerData.upgrades.ConvertAll(data => data.name);
     }
 
     private void Update()
@@ -61,9 +65,20 @@ public class Gun : MonoBehaviour
                 damage *= playerData.critDamage;
                 
                 Debug.Log("CRITICAL HIT!");
-            } else Debug.Log("NONCRIT");
+            }
+            else
+            {
+                if (upgradeNames.Contains("Lust"))
+                {
+                    damage = 0;
+                }
+                
+                Debug.Log("NONCRIT");
+            }
+
             
-            Debug.Log(damage);
+            
+            Debug.Log("DAMAGE: " + damage);
             
             enemyHealth.TakeDamage(damage);
         }
