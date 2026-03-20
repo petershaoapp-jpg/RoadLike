@@ -1,14 +1,18 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class UpgradeEffects : MonoBehaviour
 {
     [SerializeField] private PlayerData playerData;
+    private Health _health;
 
     public List<string> upgradeNames;
 
     private void Awake()
     {
+        _health = GetComponent<Health>();
+        
         // Base stats
         playerData.maxSpeed = 30;
         playerData.maxHealth = 20;
@@ -24,6 +28,26 @@ public class UpgradeEffects : MonoBehaviour
         if (upgradeNames.Contains("Big Gun"))
         {
             playerData.attack += 2;
+        }
+
+        if (upgradeNames.Contains("Huge Gun"))
+        {
+            playerData.attack += 3;
+        }
+        
+        if (upgradeNames.Contains("Enormous Gun"))
+        {
+            playerData.attack += 3;
+        }
+        
+        if (upgradeNames.Contains("Gun of the Titans"))
+        {
+            playerData.attack += 3;
+        }
+
+        if (upgradeNames.Contains("Better Wheels"))
+        {
+            playerData.maxSpeed += 500;
         }
         
         if (upgradeNames.Contains("Bad Omen"))
@@ -90,5 +114,25 @@ public class UpgradeEffects : MonoBehaviour
             playerData.critChance /= 2;
             playerData.critDamage += 500;
         }
+        
+        if (upgradeNames.Contains("Greed"))
+        {
+            playerData.attack += 50;
+            StartCoroutine(GreedRoutine());
+        }
+
+        if (upgradeNames.Contains("Wrath"))
+        {
+            playerData.attack *= 1.25f;
+            playerData.maxHealth /= 2;
+        }
+    }
+
+    private IEnumerator GreedRoutine()
+    {
+        yield return new WaitForSeconds(1);
+        float dmg =  (float) playerData.maxHealth / 100;
+        _health.TakeDamage(dmg);
+        StartCoroutine(GreedRoutine());
     }
 }

@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6e501f47748c14134a2398cdfa63328e, type: 3}
-  m_Name: Big Gun
+  m_Name: Greed
   m_EditorClassIdentifier: Assembly-CSharp::Upgrade
-  upgradeName: Big Gun
-  rarity: 0
-  cardImage: {fileID: 2100000, guid: 349570d1c7f9049fb96c1bfb48fd5e5a, type: 2}
-  description: +2 Damage
+  upgradeName: Greed
+  rarity: 4
+  cardImage: {fileID: 0}
+  description: +50 Damage\nLose 1% max HP per second
   prerequisites: []

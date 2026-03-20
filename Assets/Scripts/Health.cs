@@ -48,6 +48,14 @@ public class Health : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (health > maxHealth)
+        {
+            health = maxHealth;
+        }
+    }
+
     private IEnumerator DamageEffect()
     {
         Color originalColor = Color.gray;
