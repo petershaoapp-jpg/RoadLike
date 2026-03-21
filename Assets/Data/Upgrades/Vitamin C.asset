@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6e501f47748c14134a2398cdfa63328e, type: 3}
-  m_Name: Greed
+  m_Name: Vitamin C
   m_EditorClassIdentifier: Assembly-CSharp::Upgrade
-  upgradeName: Greed
-  rarity: 4
+  upgradeName: Vitamin C
+  rarity: 0
   cardImage: {fileID: 0}
-  description: +50 Damage\nLose 1.5% max HP per second
+  description: +5 Max HP
   prerequisites: []

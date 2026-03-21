@@ -45,6 +45,27 @@ public class UpgradeEffects : MonoBehaviour
             playerData.attack += 3;
         }
 
+        if (upgradeNames.Contains("Vitamin A"))
+        {
+            playerData.maxHealth += 5;
+        }
+        
+        if (upgradeNames.Contains("Vitamin B"))
+        {
+            playerData.maxHealth += 5;
+        }
+        
+        if (upgradeNames.Contains("Vitamin C"))
+        {
+            playerData.maxHealth += 5;
+        }
+        
+        if (upgradeNames.Contains("Vitamin X"))
+        {
+            playerData.attack += playerData.maxHealth - 20;
+            playerData.maxHealth = 20;
+        }
+
         if (upgradeNames.Contains("Better Wheels"))
         {
             playerData.maxSpeed += 500;
@@ -131,7 +152,7 @@ public class UpgradeEffects : MonoBehaviour
     private IEnumerator GreedRoutine()
     {
         yield return new WaitForSeconds(1);
-        float dmg =  (float) playerData.maxHealth / 100;
+        float dmg =  (float) playerData.maxHealth / 100 * 1.5f;
         _health.TakeDamage(dmg);
         StartCoroutine(GreedRoutine());
     }
