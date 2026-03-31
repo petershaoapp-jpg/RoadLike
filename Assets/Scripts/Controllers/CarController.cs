@@ -6,11 +6,14 @@ public class CarController : MonoBehaviour, IMovementController
 {
     // Setup private vars (w/serialization in order to tune easily)
     [SerializeField] private PlayerData data;
+    
+    [Header("Upgrades")]
+    public float handling = 1.0f; // Maybe use this for upgrades? (1.0 = base handling, 1.2 = 20% sharper/faster steering)
+
     [Header("Wheels (0/1 = Front, 2/3 = Rear)")]
     [SerializeField] private WheelCollider[] wheelColliders;
 
-    [Header("Steer")]
-    [SerializeField] private float maxSteerAngle = 40f;
+    [Header("Steer")][SerializeField] private float maxSteerAngle = 40f;
     [SerializeField] private float steerResponsiveness = 12f;
     [SerializeField] private float steerReturn = 8f;
     [SerializeField] private AnimationCurve speedToSteer = AnimationCurve.EaseInOut(0, 1, 40, 0.35f);
@@ -18,17 +21,14 @@ public class CarController : MonoBehaviour, IMovementController
     [Header("Go/Stop")]
     [SerializeField] private float accelTorque = 1600f;
     [SerializeField] private float reverseTorque = 1200f;
-    [SerializeField] private float brakeTorque = 2200f;
-    [SerializeField] private float coastBrake = 180f;
+    [SerializeField] private float brakeTorque = 2200f;[SerializeField] private float coastBrake = 180f;
     [SerializeField] private float maxSpeedKPH = 220f;
 
     [Header("Arcade Stuff")]
     [SerializeField] private float lateralGripStiffness = 2.2f;
     [SerializeField] private float forwardGripStiffness = 1.6f;
     [SerializeField] private float downforcePerKPH = 0.5f;
-    [SerializeField] private float yawStability = 3.0f;
-
-    [Header("Feel")]
+    [SerializeField] private float yawStability = 3.0f;[Header("Feel")]
     [SerializeField] private float inputSmoothing = 10f;
     [SerializeField] private float nitroMultiplier = 1.35f;
 
@@ -78,11 +78,15 @@ public class CarController : MonoBehaviour, IMovementController
         Vector2 moveInput = _moveAction.ReadValue<Vector2>();
         _throttle = Mathf.Lerp(_throttle, Mathf.Clamp(moveInput.y, -1f, 1f), Time.deltaTime * inputSmoothing);
 
+        // Apply handling stat upgrades to base steering values
+        float upgradedMaxSteer = maxSteerAngle * handling;
+        float upgradedResponsiveness = steerResponsiveness * handling;
+
         // Update wheels to turn/steer
         float speedMetersPerSecond = _rb.linearVelocity.magnitude;
         float steerScale = speedToSteer.Evaluate(speedMetersPerSecond);
-        float targetSteer = moveInput.x * maxSteerAngle * steerScale;
-        float steerRate = Mathf.Lerp(steerReturn, steerResponsiveness, Mathf.Abs(moveInput.x));
+        float targetSteer = moveInput.x * upgradedMaxSteer * steerScale;
+        float steerRate = Mathf.Lerp(steerReturn, upgradedResponsiveness, Mathf.Abs(moveInput.x));
 
         _steerAngle = Mathf.Lerp(_steerAngle, targetSteer, Time.deltaTime * steerRate);
         wheelColliders[0].steerAngle = _steerAngle;
