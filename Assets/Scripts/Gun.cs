@@ -9,6 +9,7 @@ public class Gun : MonoBehaviour
     [SerializeField] private PlayerData playerData;
     
     public List<string> upgradeNames;
+    [SerializeField] private Health health;
     
     private void Start()
     {
@@ -79,6 +80,11 @@ public class Gun : MonoBehaviour
             Debug.Log("DAMAGE: " + damage);
             
             enemyHealth.TakeDamage(damage);
+
+            if (upgradeNames.Contains("Fangs"))
+            {
+                health.Heal(health.maxHealth / 50);
+            }
         }
 
         StartCoroutine(Shoot());
