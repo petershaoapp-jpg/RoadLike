@@ -36,11 +36,14 @@ public class CarController : MonoBehaviour, IMovementController
     private Rigidbody _rb;
     private float _steerAngle;
     private float _throttle;
+    private AudioSource _audioSource;
 
 
     // Setup movement + wheel colliders with tuned values 
     private void Awake()
     {
+        _audioSource = GetComponent<AudioSource>();
+        
         _rb = GetComponent<Rigidbody>();
         _moveAction = InputSystem.actions.FindAction("Move");
 
@@ -77,12 +80,14 @@ public class CarController : MonoBehaviour, IMovementController
     {
         Vector2 moveInput = _moveAction.ReadValue<Vector2>();
         _throttle = Mathf.Lerp(_throttle, Mathf.Clamp(moveInput.y, -1f, 1f), Time.deltaTime * inputSmoothing);
-
+        
         // Update wheels to turn/steer
         float speedMetersPerSecond = _rb.linearVelocity.magnitude;
         float steerScale = speedToSteer.Evaluate(speedMetersPerSecond);
         float targetSteer = moveInput.x * maxSteerAngle * steerScale;
         float steerRate = Mathf.Lerp(steerReturn, steerResponsiveness, Mathf.Abs(moveInput.x));
+
+        _audioSource.pitch = speedMetersPerSecond;
 
         _steerAngle = Mathf.Lerp(_steerAngle, targetSteer, Time.deltaTime * steerRate);
         wheelColliders[0].steerAngle = _steerAngle;
