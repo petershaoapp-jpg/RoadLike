@@ -11,11 +11,15 @@ public class Gun : MonoBehaviour
     public List<string> upgradeNames;
     [SerializeField] private Health health;
     
+    private AudioSource _audioSource;
+    
     private void Start()
     {
         StartCoroutine(Shoot());
         
         upgradeNames = playerData.upgrades.ConvertAll(data => data.name);
+        
+        _audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -54,9 +58,12 @@ public class Gun : MonoBehaviour
         Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 10000);
 
         Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow,1);
-
+        
+        
         if (hit.collider && hit.collider.gameObject.CompareTag("Enemy"))
         {
+            _audioSource.Play();
+            
             Health enemyHealth = hit.collider.gameObject.GetComponent<Health>();
 
             float damage = playerData.attack;
