@@ -6,9 +6,6 @@ public class CarController : MonoBehaviour, IMovementController
 {
     // Setup private vars (w/serialization in order to tune easily)
     [SerializeField] private PlayerData data;
-    
-    [Header("Upgrades")]
-    public float handling = 1.0f; // Maybe use this for upgrades? (1.0 = base handling, 1.2 = 20% sharper/faster steering)
 
     [Header("Wheels (0/1 = Front, 2/3 = Rear)")]
     [SerializeField] private WheelCollider[] wheelColliders;
@@ -36,11 +33,14 @@ public class CarController : MonoBehaviour, IMovementController
     private Rigidbody _rb;
     private float _steerAngle;
     private float _throttle;
+    private AudioSource _audioSource;
 
 
-    // Setup movement + wheel colliders with tuned values 
+    // Setup movement + wheel colliders with tuned values
     private void Awake()
     {
+        _audioSource = GetComponent<AudioSource>();
+
         _rb = GetComponent<Rigidbody>();
         _moveAction = InputSystem.actions.FindAction("Move");
 
@@ -78,15 +78,13 @@ public class CarController : MonoBehaviour, IMovementController
         Vector2 moveInput = _moveAction.ReadValue<Vector2>();
         _throttle = Mathf.Lerp(_throttle, Mathf.Clamp(moveInput.y, -1f, 1f), Time.deltaTime * inputSmoothing);
 
-        // Apply handling stat upgrades to base steering values
-        float upgradedMaxSteer = maxSteerAngle * handling;
-        float upgradedResponsiveness = steerResponsiveness * handling;
-
         // Update wheels to turn/steer
         float speedMetersPerSecond = _rb.linearVelocity.magnitude;
         float steerScale = speedToSteer.Evaluate(speedMetersPerSecond);
-        float targetSteer = moveInput.x * upgradedMaxSteer * steerScale;
-        float steerRate = Mathf.Lerp(steerReturn, upgradedResponsiveness, Mathf.Abs(moveInput.x));
+        float targetSteer = moveInput.x * maxSteerAngle * steerScale;
+        float steerRate = Mathf.Lerp(steerReturn, steerResponsiveness, Mathf.Abs(moveInput.x));
+
+        _audioSource.pitch = speedMetersPerSecond;
 
         _steerAngle = Mathf.Lerp(_steerAngle, targetSteer, Time.deltaTime * steerRate);
         wheelColliders[0].steerAngle = _steerAngle;

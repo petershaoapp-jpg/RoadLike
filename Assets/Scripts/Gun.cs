@@ -6,22 +6,25 @@ using UnityEngine;
 public class Gun : MonoBehaviour
 {
     [SerializeField] private PlayerData playerData;
-    
-   
+
+
     public float fireRate = 0.5f;
-    public float turnSpeed = 15f; // This controls how quickly the gun turns to face the target. Higher values = faster turning. You can use this for upgrades as well! 
+    public float turnSpeed = 15f; // This controls how quickly the gun turns to face the target. Higher values = faster turning. You can use this for upgrades as well!
 
     [Header("Gun Settings")]
     [SerializeField] private float targetRange = 50f;
 
     public List<string> upgradeNames;
+    [SerializeField] private Health health;
+
+    private AudioSource _audioSource;
     private Collider _currentTarget;
 
     private void Start()
     {
         upgradeNames = playerData.upgrades.ConvertAll(data => data.name);
-        
-        // Use a single coroutine loop instead of dangerous recursive calls
+
+        _audioSource = GetComponent<AudioSource>();
         StartCoroutine(ShootRoutine());
     }
 
@@ -70,6 +73,8 @@ public class Gun : MonoBehaviour
             {
                 if (hit.collider.gameObject.CompareTag("Enemy"))
                 {
+                    _audioSource.Play();
+
                     Health enemyHealth = hit.collider.gameObject.GetComponent<Health>();
                     if (enemyHealth != null)
                     {
@@ -79,7 +84,8 @@ public class Gun : MonoBehaviour
             }
         }
     }
-//cleaner method to keep track of the damage.
+
+    // Cleaner method to keep track of the damage
     private void CalculateAndApplyDamage(Health enemyHealth)
     {
         float damage = playerData.attack;
@@ -99,5 +105,11 @@ public class Gun : MonoBehaviour
         }
 
         enemyHealth.TakeDamage((int)damage);
+
+        // Fangs upgrade: heal on hit
+        if (upgradeNames.Contains("Fangs"))
+        {
+            health.Heal(health.maxHealth / 50);
+        }
     }
 }
