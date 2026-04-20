@@ -113,6 +113,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Drift",
+                    "type": "Button",
+                    "id": "b0869ee4-9fbf-4bf1-a59f-7bfc1ee63904",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -542,6 +551,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a54b8508-d5f2-44a6-8b09-1279d80d7593",
+                    "path": "<Keyboard>/space",
+                    "interactions": "Hold",
+                    "processors": "Clamp(max=1)",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Drift",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
