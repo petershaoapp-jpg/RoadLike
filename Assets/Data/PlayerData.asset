@@ -19,11 +19,19 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3a2912464ddba4513b24da6b759481d1, type: 2}
   - {fileID: 11400000, guid: 9e37e448b46ea49b6b772cf82b137edb, type: 2}
   - {fileID: 11400000, guid: 57fc8d42c40c940e089fa58f9d59e47c, type: 2}
-  maxHealth: 20
-  luck: 0
-  maxSpeed: 35
+  - {fileID: 11400000, guid: 17cd752eb7b774782ba67fd88af8e3f0, type: 2}
+  - {fileID: 11400000, guid: 1eff502783c744f228accc5ff297d4ce, type: 2}
+  - {fileID: 11400000, guid: 74cb92e5d4dcb44909a7291b1048bea2, type: 2}
+  - {fileID: 11400000, guid: 309b41bc27b554d98a2f3aeb1c46b813, type: 2}
+  - {fileID: 11400000, guid: 54a7651f46dba4fe39df3bcceb1447d2, type: 2}
+  - {fileID: 11400000, guid: dca204808e7084e83a2e29957aa0fdc4, type: 2}
+  - {fileID: 11400000, guid: 4192c73e063204b74a6e21ae6fd8d47d, type: 2}
+  maxHealth: 25
+  luck: 140
+  maxSpeed: 530
+  speed: 0
   maxNitros: 3
-  nitroReplenishTime: 0
-  attack: 5
-  critChance: 20
-  critDamage: 2.3999996
+  nitroReplenishTime: 10
+  attack: 10
+  critChance: 32
+  critDamage: 49

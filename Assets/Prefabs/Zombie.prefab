@@ -197,6 +197,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ca31006388614a47ac25ee93c77bcdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyDie
+  playerData: {fileID: 11400000, guid: 28c6d0b1cf43945088c18d541c0c2d82, type: 2}
+  soul: {fileID: 6817343508767793957, guid: 6e4d4297c197a4509ace1b9c9fc0c754, type: 3}
 --- !u!114 &-9215425163801921738
 MonoBehaviour:
   m_ObjectHideFlags: 0
