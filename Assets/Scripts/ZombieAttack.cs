@@ -44,6 +44,7 @@ public class ZombieAttack : MonoBehaviour
         if (_canAttackPlayer)
         {
             _playerHealth.TakeDamage(damageAmount);
+            Destroy(gameObject);
             yield return new WaitForSeconds(1);
             StartCoroutine(DamageRoutine());
         }
