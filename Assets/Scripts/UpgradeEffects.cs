@@ -147,6 +147,12 @@ public class UpgradeEffects : MonoBehaviour
             playerData.attack *= 1.25f;
             playerData.maxHealth /= 2;
         }
+
+        if (upgradeNames.Contains("Sloth"))
+        {
+            playerData.maxSpeed = 0;
+            playerData.nitroReplenishTime /= 10;
+        }
     }
 
     private IEnumerator GreedRoutine()

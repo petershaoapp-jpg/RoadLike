@@ -13,25 +13,20 @@ MonoBehaviour:
   m_Name: PlayerData
   m_EditorClassIdentifier: Assembly-CSharp::PlayerData
   upgrades:
-  - {fileID: 11400000, guid: 2ce84d00493f944d7ba7e55c70243fe9, type: 2}
-  - {fileID: 11400000, guid: 66bc0640fc3834c98a87cea051774300, type: 2}
-  - {fileID: 11400000, guid: 8118011bbe7114d6790d13d3bd746180, type: 2}
-  - {fileID: 11400000, guid: 3a2912464ddba4513b24da6b759481d1, type: 2}
-  - {fileID: 11400000, guid: 9e37e448b46ea49b6b772cf82b137edb, type: 2}
-  - {fileID: 11400000, guid: 57fc8d42c40c940e089fa58f9d59e47c, type: 2}
-  - {fileID: 11400000, guid: 17cd752eb7b774782ba67fd88af8e3f0, type: 2}
   - {fileID: 11400000, guid: 1eff502783c744f228accc5ff297d4ce, type: 2}
-  - {fileID: 11400000, guid: 74cb92e5d4dcb44909a7291b1048bea2, type: 2}
-  - {fileID: 11400000, guid: 309b41bc27b554d98a2f3aeb1c46b813, type: 2}
+  - {fileID: 11400000, guid: 338ba964437d246b4a129fa4c5456646, type: 2}
   - {fileID: 11400000, guid: 54a7651f46dba4fe39df3bcceb1447d2, type: 2}
-  - {fileID: 11400000, guid: dca204808e7084e83a2e29957aa0fdc4, type: 2}
+  - {fileID: 11400000, guid: 8118011bbe7114d6790d13d3bd746180, type: 2}
+  - {fileID: 11400000, guid: dd49f062788c249f2ba3eba4f2a37b31, type: 2}
+  - {fileID: 11400000, guid: ddf215245e4e74c9da5c494d76fdc802, type: 2}
+  - {fileID: 11400000, guid: 923b1f2e287784fc9a766f27ef97e400, type: 2}
   - {fileID: 11400000, guid: 4192c73e063204b74a6e21ae6fd8d47d, type: 2}
-  maxHealth: 25
-  luck: 140
-  maxSpeed: 530
-  speed: 0
+  maxHealth: 12
+  luck: 246
+  maxSpeed: 30
+  speed: 246
   maxNitros: 3
   nitroReplenishTime: 10
-  attack: 10
-  critChance: 32
-  critDamage: 49
+  attack: 71.25
+  critChance: 27
+  critDamage: 9
