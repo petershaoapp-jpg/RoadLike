@@ -6,7 +6,7 @@ public class Nitro : MonoBehaviour
 {
     [SerializeField] private float nitroBoost = 500000;
 
-    public float nitros;
+    public int nitros;
     private InputAction _nitroInput;
     private Rigidbody _rb;
     [SerializeField] private PlayerData data;
@@ -32,9 +32,8 @@ public class Nitro : MonoBehaviour
 
     private IEnumerator ReplenishNitro()
     {
-      for (int i = 0; i < 10; i++) {
-        yield return new WaitForSeconds(data.nitroReplenishTime/10);
-        nitros += .1f;
-      }
+        yield return new WaitForSeconds(data.nitroReplenishTime);
+        Debug.Log("Replenish Nitro");
+        nitros++;
     }
 }
