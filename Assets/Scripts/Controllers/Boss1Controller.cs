@@ -76,7 +76,7 @@ public class BossChargeController : MonoBehaviour, IMovementController
         // PHASE 1: PREPARE (Stop moving, show danger zone, aim at player)
         _currentMovement = Vector3.zero;
         CreateDangerZone();
-        Debug.Log("[BOSS]: Preparing to Charge...");
+        Debug.Log("[BOSS]: Preparing to Charge");
         yield return new WaitForSeconds(chargePrepTime);
 
         // PHASE 2: CHARGE! (Destroy danger zone, lock direction, go fast)
@@ -92,14 +92,14 @@ public class BossChargeController : MonoBehaviour, IMovementController
             chargeDirection.y = 0;
             _currentMovement = chargeDirection.normalized * chargeSpeedMultiplier;
         }
-        Debug.Log("[BOSS]: RAAAAAH! CHARGING!");
+        Debug.Log("[BOSS]: CHARGING");
 
         yield return new WaitForSeconds(chargeDuration);
 
         // PHASE 3: COOLDOWN (Stop moving and rest)
         _isActivelyCharging = false;
         _currentMovement = Vector3.zero;
-        Debug.Log("[BOSS]: Resting...");
+        Debug.Log("[BOSS]: Resting");
         yield return new WaitForSeconds(restTime);
 
         _isCharging = false;
