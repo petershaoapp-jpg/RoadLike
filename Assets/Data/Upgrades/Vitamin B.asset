@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Upgrade
   upgradeName: Vitamin B
   rarity: 0
-  cardImage: {fileID: 0}
+  cardImage: {fileID: 2100000, guid: 85b01259ccda84f2cb7ec2a19e6e2daa, type: 2}
   description: +5 Max HP
   prerequisites: []

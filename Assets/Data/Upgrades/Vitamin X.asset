@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Upgrade
   upgradeName: Vitamin X
   rarity: 2
-  cardImage: {fileID: 0}
+  cardImage: {fileID: 2100000, guid: 272234c57b5fb4fa7b53eb59222b0a8e, type: 2}
   description: Cap max health at 10 HP\nConvert overflow health into damage
   prerequisites:
   - {fileID: 11400000, guid: ddf215245e4e74c9da5c494d76fdc802, type: 2}
