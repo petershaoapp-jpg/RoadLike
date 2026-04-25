@@ -124,6 +124,11 @@ public class UpgradeEffects : MonoBehaviour
             playerData.critDamage += 7;
             playerData.luck += 7;
         }
+
+        if (upgradeNames.Contains("Nitro+"))
+        {
+            playerData.maxNitros += 1;
+        }
         
         // Late trigger
         if (upgradeNames.Contains("Horseshoe"))
