@@ -9,12 +9,17 @@ public class BossChargeController : MonoBehaviour, IMovementController
     [SerializeField] private float triggerDistance = 35f;
     [SerializeField] private float chargePrepTime = 1.5f; // Wait time before charging
     [SerializeField] private float chargeDuration = 2f;   // How long it charges
+    [SerializeField] private float restTime = 3f;         // Cooldown after charging
 
     [Header("Speed Multipliers")]
     [Tooltip("Normal walking speed (0.5 means half of MoveConstantSpeed)")]
     [SerializeField] private float walkSpeedMultiplier = 0.5f;
     [Tooltip("Charging speed (3 means 300% speed)")]
     [SerializeField] private float chargeSpeedMultiplier = 3f;
+
+    [Header("Charge Damage")]
+    [SerializeField] private int chargeDamage = 30;
+    [SerializeField] private float knockbackForce = 50f;
 
     [Header("Danger Zone")]
     [SerializeField] private float dangerZoneWidth = 3f;
@@ -28,6 +33,8 @@ public class BossChargeController : MonoBehaviour, IMovementController
     private GameObject _dangerZoneParent;
     private List<GameObject> _segments = new List<GameObject>();
     private Material _dangerZoneMaterial;
+    private bool _isActivelyCharging = false;
+    private bool _hasHitPlayer = false;
 
     private void Start()
     {
@@ -76,6 +83,9 @@ public class BossChargeController : MonoBehaviour, IMovementController
         _isPrepping = false;
         DestroyDangerZone();
 
+        _isActivelyCharging = true;
+        _hasHitPlayer = false;
+
         if (_player != null)
         {
             Vector3 chargeDirection = _player.transform.position - transform.position;
@@ -86,7 +96,12 @@ public class BossChargeController : MonoBehaviour, IMovementController
 
         yield return new WaitForSeconds(chargeDuration);
 
-        // PHASE 3: COOLDOWN (Back to normal)
+        // PHASE 3: COOLDOWN (Stop moving and rest)
+        _isActivelyCharging = false;
+        _currentMovement = Vector3.zero;
+        Debug.Log("[BOSS]: Resting...");
+        yield return new WaitForSeconds(restTime);
+
         _isCharging = false;
     }
 
@@ -180,6 +195,38 @@ public class BossChargeController : MonoBehaviour, IMovementController
         {
             Destroy(_dangerZoneMaterial);
             _dangerZoneMaterial = null;
+        }
+    }
+
+    // ========== Collision Damage ==========
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        // Only deal damage while actively charging, and only once per charge
+        if (!_isActivelyCharging || _hasHitPlayer) return;
+
+        // Only damage the player car
+        if (collision.gameObject.name != "Car") return;
+
+        // Mark as hit so we don't damage again this charge
+        _hasHitPlayer = true;
+
+        // Deal damage
+        Health playerHealth = collision.gameObject.GetComponent<Health>();
+        if (playerHealth != null)
+        {
+            playerHealth.TakeDamage(chargeDamage);
+            Debug.Log("[BOSS]: Hit the player for " + chargeDamage + " damage!");
+        }
+
+        // Knockback: launch the car in the charge direction + a bit upward
+        Rigidbody playerRb = collision.gameObject.GetComponent<Rigidbody>();
+        if (playerRb != null)
+        {
+            Vector3 knockDirection = (collision.transform.position - transform.position).normalized;
+            knockDirection.y = 0;
+            knockDirection += Vector3.up * 0.3f; // Slight upward lift so the car gets "launched"
+            playerRb.AddForce(knockDirection * knockbackForce, ForceMode.Impulse);
         }
     }
 
