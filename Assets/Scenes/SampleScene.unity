@@ -1649,9 +1649,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1007188868}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 195, y: 140}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -207, y: -56}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &758761929
@@ -3026,7 +3026,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1646006806}
-  - {fileID: 1612072565}
   - {fileID: 1217050098}
   - {fileID: 758761927}
   - {fileID: 578692212}
@@ -3324,9 +3323,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1007188868}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -396.10327, y: 140}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 9, y: -55}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1217050099
@@ -4090,16 +4089,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1612072564}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1007188868}
+  m_Father: {fileID: 1646006806}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 595, y: -179.35522}
+  m_AnchoredPosition: {x: 0.00012207031, y: 0}
   m_SizeDelta: {x: 200, y: 31.290009}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1612072566
@@ -4182,13 +4181,14 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1612072565}
   m_Father: {fileID: 1007188868}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 295, y: -179.35522}
-  m_SizeDelta: {x: -600, y: 25.289581}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -104, y: 20}
+  m_SizeDelta: {x: 200, y: 25.289581}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1646006807
 MonoBehaviour:
@@ -4955,8 +4955,11 @@ MonoBehaviour:
   triggerDistance: 35
   chargePrepTime: 1.5
   chargeDuration: 2
+  restTime: 3
   walkSpeedMultiplier: 0.5
   chargeSpeedMultiplier: 10
+  chargeDamage: 30
+  knockbackForce: 50
   dangerZoneWidth: 3
   segmentLength: 0.1
   dangerZoneColor: {r: 1, g: 0, b: 0, a: 0.35}
