@@ -8,6 +8,8 @@ public class UpgradeEffects : MonoBehaviour
     private Health _health;
 
     public List<string> upgradeNames;
+    
+    private float baseDamage;
 
     private void Awake()
     {
@@ -151,10 +153,22 @@ public class UpgradeEffects : MonoBehaviour
         if (upgradeNames.Contains("Sloth"))
         {
             playerData.maxSpeed = 0;
-            playerData.nitroReplenishTime /= 10;
+            playerData.nitroReplenishTime /= 2;
         }
+
+        baseDamage = playerData.attack;
     }
 
+    private void Update()
+    {
+        if (!upgradeNames.Contains("Envy")) return;
+
+        float envyDamage = GameObject.FindGameObjectsWithTag("Enemy").Length;
+
+        playerData.attack = baseDamage + envyDamage;
+    }
+    
+    
     private IEnumerator GreedRoutine()
     {
         yield return new WaitForSeconds(1);

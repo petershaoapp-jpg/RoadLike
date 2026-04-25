@@ -2448,7 +2448,6 @@ GameObject:
   - component: {fileID: 965271182}
   - component: {fileID: 965271184}
   - component: {fileID: 965271186}
-  - component: {fileID: 965271187}
   m_Layer: 0
   m_Name: Car
   m_TagString: Untagged
@@ -2611,7 +2610,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 965271169}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b11d75f134a97c246bfc701100663068, type: 3}
   m_Name: 
@@ -2840,23 +2839,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeEffects
   playerData: {fileID: 11400000, guid: 28c6d0b1cf43945088c18d541c0c2d82, type: 2}
   upgradeNames: []
---- !u!114 &965271187
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 965271169}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6429b179d21c4f7aafee983fadf2711, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BetterCarController
-  maxThrottle: 2
-  maxSpeedMph: 45
-  turnSpeed: 50
-  handling: 50
-  acceleration: 10
 --- !u!1001 &965734299
 PrefabInstance:
   m_ObjectHideFlags: 0
