@@ -434,6 +434,7 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 3283812204266706981, guid: e9d800f11112195468e2c77a538fa6c0, type: 3}
     - {fileID: -6910835906485515558, guid: e9d800f11112195468e2c77a538fa6c0, type: 3}
+    - {fileID: 6316453601953239257, guid: e9d800f11112195468e2c77a538fa6c0, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -1890,7 +1891,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000091552734}
+  m_AnchoredPosition: {x: 0, y: 0.00012207031}
   m_SizeDelta: {x: -0.00012207, y: 0.0002}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &805026137
@@ -2447,6 +2448,7 @@ GameObject:
   - component: {fileID: 965271182}
   - component: {fileID: 965271184}
   - component: {fileID: 965271186}
+  - component: {fileID: 965271187}
   m_Layer: 0
   m_Name: Car
   m_TagString: Untagged
@@ -2609,13 +2611,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 965271169}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b11d75f134a97c246bfc701100663068, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CarController
   data: {fileID: 11400000, guid: 28c6d0b1cf43945088c18d541c0c2d82, type: 2}
-  handling: 1
   wheelColliders:
   - {fileID: 907854053}
   - {fileID: 149492353}
@@ -2839,6 +2840,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeEffects
   playerData: {fileID: 11400000, guid: 28c6d0b1cf43945088c18d541c0c2d82, type: 2}
   upgradeNames: []
+--- !u!114 &965271187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 965271169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6429b179d21c4f7aafee983fadf2711, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BetterCarController
+  maxThrottle: 2
+  maxSpeedMph: 45
+  turnSpeed: 50
+  handling: 50
+  acceleration: 10
 --- !u!1001 &965734299
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4950,13 +4968,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7bc5063a2bb6e44cfab9d6a32a59d896, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossChargeController
   triggerDistance: 35
   chargePrepTime: 1.5
   chargeDuration: 2
   walkSpeedMultiplier: 0.5
   chargeSpeedMultiplier: 10
+  dangerZoneWidth: 3
+  segmentLength: 0.1
+  dangerZoneColor: {r: 1, g: 0, b: 0, a: 0.35}
 --- !u!1 &2107712834
 GameObject:
   m_ObjectHideFlags: 0
