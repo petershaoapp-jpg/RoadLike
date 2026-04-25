@@ -41,7 +41,7 @@ public class Health : MonoBehaviour
 
         StartCoroutine(DamageEffect());
 
-        if (health < 0)
+        if (health <= 0.01)
         {
             health = 0;
             _dieScript.OnDie();
