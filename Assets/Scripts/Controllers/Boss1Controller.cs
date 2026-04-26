@@ -61,6 +61,8 @@ public class BossChargeController : MonoBehaviour, IMovementController
         }
         else
         {
+            if (Vector3.Distance(transform.position, _player.transform.position) > 50) return;
+            
             // Slowly walk towards player
             Vector3 direction = _player.transform.position - transform.position;
             direction.y = 0;
