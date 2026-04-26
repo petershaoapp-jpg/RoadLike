@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Upgrade
   upgradeName: Gun of the Titans
   rarity: 3
-  cardImage: {fileID: 0}
+  cardImage: {fileID: 2100000, guid: 3a72ec2a1846546fc821d1c04afa9696, type: 2}
   description: +3 Damage
   prerequisites:
   - {fileID: 11400000, guid: 2fd73f1ba37014528843922da9a73329, type: 2}

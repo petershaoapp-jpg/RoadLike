@@ -27,7 +27,7 @@ public class UpgradeSelector : MonoBehaviour
         float random = Random.Range(0,100);
 
         // Rarity thresholds
-        float rareThreshold = 15 * rarityBonusPerentage;
+        float rareThreshold = 10 * rarityBonusPerentage;
         float epicThreshold = 5 * rarityBonusPerentage;
         float legendaryThreshold = rarityBonusPerentage;
         float arcaneThreshold = 0.2f * rarityBonusPerentage;
