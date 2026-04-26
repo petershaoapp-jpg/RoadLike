@@ -27,12 +27,15 @@ public class UpgradeSelector : MonoBehaviour
         float random = Random.Range(0,100);
 
         // Rarity thresholds
-        float rareThreshold = 30 * rarityBonusPerentage;
-        float epicThreshold = 20 * rarityBonusPerentage;
-        float legendaryThreshold = 15 * rarityBonusPerentage;
-        float arcaneThreshold = 5 * rarityBonusPerentage;
+        float rareThreshold = 15 * rarityBonusPerentage;
+        float epicThreshold = 5 * rarityBonusPerentage;
+        float legendaryThreshold = rarityBonusPerentage;
+        float arcaneThreshold = 0.2f * rarityBonusPerentage;
 
         Rarity rarity;
+        
+        Debug.Log("[UPGRADES]: Rarity bonus %: " + rarityBonusPerentage);
+        Debug.Log("[UPGRADES] Random #:" +  random);
 
         if (random < arcaneThreshold)
         {
@@ -51,6 +54,8 @@ public class UpgradeSelector : MonoBehaviour
             rarity = Rarity.Common;
         }
 
+        Debug.Log(rarity);
+        
         List<Upgrade> pool = GetAvailableUpgrades().Where(u => u.rarity == rarity).ToList();
 
         int index = Random.Range(0,pool.Count);

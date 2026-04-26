@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Upgrade
   upgradeName: Sniper
   rarity: 1
-  cardImage: {fileID: 0}
+  cardImage: {fileID: 2100000, guid: 4a5db93dcaf3e45f4884968f7b55acaf, type: 2}
   description: +10 Crit Chance
   prerequisites:
   - {fileID: 11400000, guid: dca204808e7084e83a2e29957aa0fdc4, type: 2}

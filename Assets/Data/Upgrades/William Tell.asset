@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Upgrade
   upgradeName: William Tell
   rarity: 3
-  cardImage: {fileID: 0}
+  cardImage: {fileID: 2100000, guid: ad2605f9ccd474fcabe4e0c1b4cd0907, type: 2}
   description: +20 Crit Chance
   prerequisites:
   - {fileID: 11400000, guid: 440efbb4c362a45bfb36562efc82b972, type: 2}
