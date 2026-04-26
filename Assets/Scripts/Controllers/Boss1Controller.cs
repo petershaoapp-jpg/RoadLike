@@ -230,6 +230,14 @@ public class BossChargeController : MonoBehaviour, IMovementController
         }
     }
 
+    // ========== Cleanup ==========
+
+    private void OnDestroy()
+    {
+        // If boss dies mid-charge, clear the danger zone
+        DestroyDangerZone();
+    }
+
     // ========== Interface ==========
 
     public Vector3 GetMovement()
