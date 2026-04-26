@@ -12,21 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90d83bd692e6b4fbb866d1da0580beb9, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: Assembly-CSharp::PlayerData
-  upgrades:
-  - {fileID: 11400000, guid: 1eff502783c744f228accc5ff297d4ce, type: 2}
-  - {fileID: 11400000, guid: 338ba964437d246b4a129fa4c5456646, type: 2}
-  - {fileID: 11400000, guid: 54a7651f46dba4fe39df3bcceb1447d2, type: 2}
-  - {fileID: 11400000, guid: 8118011bbe7114d6790d13d3bd746180, type: 2}
-  - {fileID: 11400000, guid: dd49f062788c249f2ba3eba4f2a37b31, type: 2}
-  - {fileID: 11400000, guid: ddf215245e4e74c9da5c494d76fdc802, type: 2}
-  - {fileID: 11400000, guid: 923b1f2e287784fc9a766f27ef97e400, type: 2}
-  - {fileID: 11400000, guid: 4192c73e063204b74a6e21ae6fd8d47d, type: 2}
-  maxHealth: 12
-  luck: 246
+  upgrades: []
+  level: 1
+  maxHealth: 20
+  luck: 258
   maxSpeed: 30
-  speed: 246
+  speed: 0
   maxNitros: 3
   nitroReplenishTime: 10
-  attack: 71.25
-  critChance: 27
-  critDamage: 9
+  attack: 5
+  critChance: 20
+  critDamage: 2
