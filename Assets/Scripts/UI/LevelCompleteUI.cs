@@ -20,7 +20,7 @@ public class LevelCompleteUI : MonoBehaviour
   [SerializeField] private PlayerData playerData;
   private UpgradeSelector _upgradeSelector;
   
-  private int[] sPlusTimes = {50};
+  private int[] sPlusTimes = {50,60,0,0,0,45};
   
   private void Start()
   {

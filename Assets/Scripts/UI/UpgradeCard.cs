@@ -53,6 +53,6 @@ public class UpgradeCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     {
         playerData.upgrades.Add(upgrade);
 
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(playerData.level);
     }
 }

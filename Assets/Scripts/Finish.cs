@@ -23,6 +23,6 @@ public class Finish : MonoBehaviour
     data.formattedTime = formatted;
     data.time = _timer.time;
 
-    SceneManager.LoadScene(2);
+    SceneManager.LoadScene(SceneManager.sceneCountInBuildSettings - 1);
   }
 }
