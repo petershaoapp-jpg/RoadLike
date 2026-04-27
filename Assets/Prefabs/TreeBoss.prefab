@@ -199,22 +199,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TreeBossController
   barrageCount: 16
   barrageSpreadAngle: 360
+  barrageWaves: 3
+  barragWaveDelay: 0.4
   barrageChargeTime: 2
   barrageCooldown: 7
   barrageProjectileSpeed: 60
   barrageProjectileDamage: 4
-  barrageBulletSize: 1
+  barrageBulletSize: 3
   barrageBulletColor: {r: 0.6, g: 1, b: 0.2, a: 1}
+  vineCount: 4
+  vineRandomRange: 40
   vineStrikeRange: 50
   vineWarningTime: 1.5
   vineLingerTime: 1
   vineStrikeCooldown: 5
   vineStrikeDamage: 4
   vineKnockbackForce: 20
-  vineRadius: 3
-  vineHeight: 6
+  vineRadius: 8
+  vineHeight: 20
   dangerZoneColor: {r: 1, g: 0, b: 0, a: 0.25}
   vineColor: {r: 0.2, g: 0.5, b: 0.1, a: 1}
+  wallCount: 3
+  wallRandomRange: 50
   wallSpawnDistance: 25
   wallSegmentCount: 8
   wallSegmentWidth: 3
