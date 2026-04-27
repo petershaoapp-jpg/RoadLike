@@ -122,6 +122,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Skip song",
+                    "type": "Button",
+                    "id": "f567e5e6-9ace-424c-b909-801f7d1a199d",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -562,6 +571,28 @@
                     "processors": "Clamp(max=1)",
                     "groups": ";Keyboard&Mouse",
                     "action": "Drift",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bf109720-e19b-4527-b5ae-8d442687e3f8",
+                    "path": "<Keyboard>/p",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Skip song",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "412e3a86-09f1-42d6-8416-4d85eed59734",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Skip song",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -16,7 +16,6 @@ public class Finish : MonoBehaviour
 
     if (SceneManager.GetActiveScene().name == "Bossfight")
     {
-      Debug.Log("!!!!!!!!!!!");
       SceneManager.LoadScene(SceneManager.sceneCountInBuildSettings - 2);
       return;
     }

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class Radio : MonoBehaviour
@@ -8,6 +9,9 @@ public class Radio : MonoBehaviour
   private AudioClip _currentSong;
   private AudioLowPassFilter _lowPassFilter;
   private AudioHighPassFilter _highPassFilter;
+  
+  private InputAction _skipSongAction;
+
   
   private static GameObject _instance;
 
@@ -25,8 +29,30 @@ public class Radio : MonoBehaviour
     _source = GetComponent<AudioSource>();
     _lowPassFilter = GetComponent<AudioLowPassFilter>();
     _highPassFilter = GetComponent<AudioHighPassFilter>();
+    
+    _skipSongAction = InputSystem.actions.FindAction("Skip song");
+
+    _skipSongAction.performed += SkipSong;
   }
 
+  private void SkipSong(InputAction.CallbackContext callbackContext)
+  {
+    AudioClip song;
+
+    do {
+      int randomIndex = Random.Range(0, songs.Length);
+
+      song = songs[randomIndex];
+    } while (song == _currentSong);    
+
+
+    _currentSong = song;
+
+    _source.clip = song;
+
+    _source.Play();
+  }
+  
   // Update is called once per frame
   void Update()
   {
@@ -52,7 +78,6 @@ public class Radio : MonoBehaviour
     AudioClip song;
 
     do {
-
       int randomIndex = Random.Range(0, songs.Length);
 
       song = songs[randomIndex];
