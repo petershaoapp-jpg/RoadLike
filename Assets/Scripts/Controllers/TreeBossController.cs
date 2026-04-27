@@ -20,7 +20,7 @@ public class TreeBossController : MonoBehaviour, IMovementController
     [Header("Barrage Projectile")]
     [SerializeField] private float barrageProjectileSpeed = 20f;
     [SerializeField] private int barrageProjectileDamage = 8;
-    [SerializeField] private float barrageBulletSize = 0.4f;
+    [SerializeField] private float barrageBulletSize = 1f;
     [SerializeField] private Color barrageBulletColor = new Color(0.6f, 1f, 0.2f, 1f); // Sickly green
 
     // =============================================
@@ -168,6 +168,9 @@ public class TreeBossController : MonoBehaviour, IMovementController
 
         float angleStep = barrageSpreadAngle / barrageCount;
 
+        // Store all bullet colliders so we can ignore collisions between them
+        List<Collider> bulletColliders = new List<Collider>();
+
         for (int i = 0; i < barrageCount; i++)
         {
             float angle = startAngle + angleStep * i;
@@ -176,7 +179,7 @@ public class TreeBossController : MonoBehaviour, IMovementController
             // Create bullet
             GameObject bullet = GameObject.CreatePrimitive(PrimitiveType.Sphere);
             bullet.name = "FireShot";
-            bullet.transform.position = new Vector3(transform.position.x, _player.transform.position.y, transform.position.z) + direction * 1.5f;
+            bullet.transform.position = new Vector3(transform.position.x, _player.transform.position.y + barrageBulletSize * 0.5f, transform.position.z) + direction * 3f;
             bullet.transform.localScale = Vector3.one * barrageBulletSize;
 
             // URP Lit material with emission
@@ -203,6 +206,20 @@ public class TreeBossController : MonoBehaviour, IMovementController
             {
                 Physics.IgnoreCollision(bulletCollider, bossCollider);
             }
+
+            if (bulletCollider != null)
+            {
+                bulletColliders.Add(bulletCollider);
+            }
+        }
+
+        // Ignore collisions between all bullets so they don't destroy each other
+        for (int i = 0; i < bulletColliders.Count; i++)
+        {
+            for (int j = i + 1; j < bulletColliders.Count; j++)
+            {
+                Physics.IgnoreCollision(bulletColliders[i], bulletColliders[j]);
+            }
         }
     }
 
@@ -223,13 +240,20 @@ public class TreeBossController : MonoBehaviour, IMovementController
                 continue;
             }
 
-            // Pick a target position near the player (with slight prediction)
+            // Pick a target position near the player
+            // Always offset so it doesn't spawn directly on top of the car
             Vector3 targetPos = _player.transform.position;
             Rigidbody playerRb = _player.GetComponent<Rigidbody>();
-            if (playerRb != null)
+            if (playerRb != null && playerRb.linearVelocity.sqrMagnitude > 1f)
             {
-                // Lead the target slightly based on velocity
+                // Player is moving - lead the target slightly
                 targetPos += playerRb.linearVelocity * 0.3f;
+            }
+            else
+            {
+                // Player is stationary - offset randomly so vine doesn't land on their head
+                Vector2 randomOffset = Random.insideUnitCircle.normalized * Random.Range(1f, 3f);
+                targetPos += new Vector3(randomOffset.x, 0f, randomOffset.y);
             }
 
             // PHASE 1: Show red danger zone
@@ -262,14 +286,18 @@ public class TreeBossController : MonoBehaviour, IMovementController
         zone.name = "VineDangerZone";
         Destroy(zone.GetComponent<Collider>()); // No collision, visual only
 
-        // Raycast to find ground
-        Vector3 groundPos = position;
-        if (Physics.Raycast(position + Vector3.up * 50f, Vector3.down, out RaycastHit hit, 100f))
+        // Raycast to find ground - start from high up, skip the car
+        Vector3 rayOrigin = new Vector3(position.x, 200f, position.z);
+        float groundY = 0f;
+        if (Physics.Raycast(rayOrigin, Vector3.down, out RaycastHit hit, 400f))
         {
-            groundPos = hit.point;
+            if (hit.collider.gameObject.name != "Car")
+            {
+                groundY = hit.point.y;
+            }
         }
 
-        zone.transform.position = groundPos + Vector3.up * 0.05f;
+        zone.transform.position = new Vector3(position.x, groundY + 0.05f, position.z);
         zone.transform.localScale = new Vector3(vineRadius * 2f, 0.02f, vineRadius * 2f);
 
         // URP transparent material
@@ -293,15 +321,20 @@ public class TreeBossController : MonoBehaviour, IMovementController
         GameObject vine = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
         vine.name = "VineStrike";
 
-        // Find ground level
-        Vector3 groundPos = position;
-        if (Physics.Raycast(position + Vector3.up * 50f, Vector3.down, out RaycastHit hit, 100f))
+        // Find ground level - use only the XZ of target, raycast straight down
+        Vector3 rayOrigin = new Vector3(position.x, 200f, position.z);
+        float groundY = 0f; // Fallback to Y=0 if raycast misses
+        if (Physics.Raycast(rayOrigin, Vector3.down, out RaycastHit hit, 400f))
         {
-            groundPos = hit.point;
+            // Skip if we hit the player car - use fallback instead
+            if (hit.collider.gameObject.name != "Car")
+            {
+                groundY = hit.point.y;
+            }
         }
 
         // Position so the vine sticks up from the ground
-        vine.transform.position = groundPos + Vector3.up * (vineHeight / 2f);
+        vine.transform.position = new Vector3(position.x, groundY + vineHeight / 2f, position.z);
         vine.transform.localScale = new Vector3(vineRadius * 0.5f, vineHeight / 2f, vineRadius * 0.5f);
 
         // Green material with emission
@@ -424,7 +457,7 @@ public class TreeBossController : MonoBehaviour, IMovementController
 
     private void OnDestroy()
     {
-        // Clean up any active vines and walls when boss dies
+        // Clean up any active vines, walls, and danger zones when boss dies
         foreach (GameObject vine in _activeVines)
         {
             if (vine != null) Destroy(vine);
@@ -432,6 +465,14 @@ public class TreeBossController : MonoBehaviour, IMovementController
         foreach (GameObject wall in _activeWalls)
         {
             if (wall != null) Destroy(wall);
+        }
+        // Clean up any lingering danger zones
+        foreach (GameObject zone in GameObject.FindObjectsByType<GameObject>(FindObjectsSortMode.None))
+        {
+            if (zone != null && zone.name == "VineDangerZone")
+            {
+                Destroy(zone);
+            }
         }
         _activeVines.Clear();
         _activeWalls.Clear();
