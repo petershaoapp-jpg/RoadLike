@@ -8,17 +8,13 @@ public class TreeBossController : MonoBehaviour, IMovementController
     //  ABILITY 1: BULLET BARRAGE
     // =============================================
     [Header("Barrage Settings")]
-    [Tooltip("Number of bullets per wave")]
+    [Tooltip("Number of bullets per barrage")]
     [SerializeField] private int barrageCount = 16;
     [Tooltip("Spread angle in degrees (360 = full ring)")]
     [SerializeField] private float barrageSpreadAngle = 360f;
-    [Tooltip("Number of waves per barrage")]
-    [SerializeField] private int barrageWaves = 3;
-    [Tooltip("Delay between waves within one barrage")]
-    [SerializeField] private float barragWaveDelay = 0.4f;
     [Tooltip("Warning time before barrage fires")]
     [SerializeField] private float barrageChargeTime = 2f;
-    [Tooltip("Cooldown after all waves finish")]
+    [Tooltip("Cooldown after barrage")]
     [SerializeField] private float barrageCooldown = 7f;
 
     [Header("Barrage Projectile")]
@@ -31,10 +27,6 @@ public class TreeBossController : MonoBehaviour, IMovementController
     //  ABILITY 2: VINE STRIKE
     // =============================================
     [Header("Vine Strike Settings")]
-    [Tooltip("Total number of vines per strike (1 targets player, rest are random)")]
-    [SerializeField] private int vineCount = 4;
-    [Tooltip("Random vines spawn within this radius of the boss")]
-    [SerializeField] private float vineRandomRange = 40f;
     [Tooltip("How close the player must be for vine strikes")]
     [SerializeField] private float vineStrikeRange = 50f;
     [Tooltip("Warning time before vine erupts")]
@@ -49,8 +41,8 @@ public class TreeBossController : MonoBehaviour, IMovementController
     [SerializeField] private float vineKnockbackForce = 20f;
 
     [Header("Vine Strike Visuals")]
-    [SerializeField] private float vineRadius = 8f;
-    [SerializeField] private float vineHeight = 15f;
+    [SerializeField] private float vineRadius = 3f;
+    [SerializeField] private float vineHeight = 6f;
     [SerializeField] private Color dangerZoneColor = new Color(1f, 0f, 0f, 0.25f);
     [SerializeField] private Color vineColor = new Color(0.2f, 0.5f, 0.1f, 1f); // Dark green
 
@@ -58,11 +50,7 @@ public class TreeBossController : MonoBehaviour, IMovementController
     //  ABILITY 3: VINE WALL
     // =============================================
     [Header("Vine Wall Settings")]
-    [Tooltip("Total number of walls per cycle (1 blocks player, rest are random)")]
-    [SerializeField] private int wallCount = 3;
-    [Tooltip("Random walls spawn within this radius of the boss")]
-    [SerializeField] private float wallRandomRange = 50f;
-    [Tooltip("Distance ahead of the player to spawn the blocking wall")]
+    [Tooltip("Distance ahead of the player to spawn the wall")]
     [SerializeField] private float wallSpawnDistance = 25f;
     [Tooltip("Number of segments in the wall")]
     [SerializeField] private int wallSegmentCount = 8;
@@ -124,18 +112,9 @@ public class TreeBossController : MonoBehaviour, IMovementController
             Debug.Log("[TREE BOSS]: Charging barrage...");
             yield return StartCoroutine(BarrageChargeEffect());
 
-            // FIRE: Multiple waves, each at a different random angle offset
-            for (int wave = 0; wave < barrageWaves; wave++)
-            {
-                float angleOffset = Random.Range(0f, 360f / barrageCount);
-                FireBarrage(angleOffset);
-                Debug.Log("[TREE BOSS]: BARRAGE WAVE " + (wave + 1) + "/" + barrageWaves);
-
-                if (wave < barrageWaves - 1)
-                {
-                    yield return new WaitForSeconds(barragWaveDelay);
-                }
-            }
+            // FIRE: Spawn ring/fan of bullets
+            FireBarrage();
+            Debug.Log("[TREE BOSS]: BARRAGE FIRED!");
 
             // COOLDOWN
             yield return new WaitForSeconds(barrageCooldown);
@@ -168,7 +147,7 @@ public class TreeBossController : MonoBehaviour, IMovementController
         }
     }
 
-    private void FireBarrage(float angleOffset = 0f)
+    private void FireBarrage()
     {
         if (_player == null) return;
 
@@ -194,7 +173,7 @@ public class TreeBossController : MonoBehaviour, IMovementController
 
         for (int i = 0; i < barrageCount; i++)
         {
-            float angle = startAngle + angleStep * i + angleOffset;
+            float angle = startAngle + angleStep * i;
             Vector3 direction = Quaternion.Euler(0, angle, 0) * Vector3.forward;
 
             // Create bullet
@@ -242,20 +221,6 @@ public class TreeBossController : MonoBehaviour, IMovementController
                 Physics.IgnoreCollision(bulletColliders[i], bulletColliders[j]);
             }
         }
-
-        // Ignore collisions between bullets and vine walls so bullets pass through
-        VineWall[] vineWalls = FindObjectsByType<VineWall>(FindObjectsSortMode.None);
-        foreach (Collider bc in bulletColliders)
-        {
-            foreach (VineWall vw in vineWalls)
-            {
-                Collider wallCol = vw.GetComponent<Collider>();
-                if (bc != null && wallCol != null)
-                {
-                    Physics.IgnoreCollision(bc, wallCol);
-                }
-            }
-        }
     }
 
     // =================================================================
@@ -275,61 +240,38 @@ public class TreeBossController : MonoBehaviour, IMovementController
                 continue;
             }
 
-            // Build target positions: first one targets the player, rest are random around the boss
-            List<Vector3> vinePositions = new List<Vector3>();
-
-            // Vine #1: aimed at the player
-            Vector3 playerTargetPos = _player.transform.position;
+            // Pick a target position near the player
+            // Always offset so it doesn't spawn directly on top of the car
+            Vector3 targetPos = _player.transform.position;
             Rigidbody playerRb = _player.GetComponent<Rigidbody>();
             if (playerRb != null && playerRb.linearVelocity.sqrMagnitude > 1f)
             {
-                playerTargetPos += playerRb.linearVelocity * 0.3f;
+                // Player is moving - lead the target slightly
+                targetPos += playerRb.linearVelocity * 0.3f;
             }
             else
             {
+                // Player is stationary - offset randomly so vine doesn't land on their head
                 Vector2 randomOffset = Random.insideUnitCircle.normalized * Random.Range(1f, 3f);
-                playerTargetPos += new Vector3(randomOffset.x, 0f, randomOffset.y);
-            }
-            vinePositions.Add(playerTargetPos);
-
-            // Remaining vines: random positions around the boss
-            for (int i = 1; i < vineCount; i++)
-            {
-                Vector2 rng = Random.insideUnitCircle * vineRandomRange;
-                Vector3 randomPos = transform.position + new Vector3(rng.x, 0f, rng.y);
-                vinePositions.Add(randomPos);
+                targetPos += new Vector3(randomOffset.x, 0f, randomOffset.y);
             }
 
-            // PHASE 1: Show all danger zones at once
-            List<GameObject> dangerZones = new List<GameObject>();
-            foreach (Vector3 pos in vinePositions)
-            {
-                dangerZones.Add(CreateDangerZone(pos));
-            }
-            Debug.Log("[TREE BOSS]: Vine strike warning! (" + vineCount + " vines)");
+            // PHASE 1: Show red danger zone
+            GameObject dangerZone = CreateDangerZone(targetPos);
+            Debug.Log("[TREE BOSS]: Vine strike warning!");
             yield return new WaitForSeconds(vineWarningTime);
 
-            // PHASE 2: Destroy all danger zones, spawn all vines
-            foreach (GameObject dz in dangerZones)
-            {
-                if (dz != null) Destroy(dz);
-            }
-            List<GameObject> spawnedVines = new List<GameObject>();
-            foreach (Vector3 pos in vinePositions)
-            {
-                spawnedVines.Add(SpawnVine(pos));
-            }
-            Debug.Log("[TREE BOSS]: VINES ERUPT!");
+            // PHASE 2: Destroy danger zone, spawn vine
+            if (dangerZone != null) Destroy(dangerZone);
+            GameObject vine = SpawnVine(targetPos);
+            Debug.Log("[TREE BOSS]: VINE ERUPTS!");
 
-            // PHASE 3: All vines linger then retract
+            // PHASE 3: Vine lingers then retracts
             yield return new WaitForSeconds(vineLingerTime);
-            foreach (GameObject vine in spawnedVines)
+            if (vine != null)
             {
-                if (vine != null)
-                {
-                    _activeVines.Remove(vine);
-                    Destroy(vine);
-                }
+                _activeVines.Remove(vine);
+                Destroy(vine);
             }
 
             // COOLDOWN
@@ -425,44 +367,30 @@ public class TreeBossController : MonoBehaviour, IMovementController
         {
             if (_player == null) yield break;
 
-            // Wall #1: blocks the player's path
-            List<GameObject> spawnedWalls = new List<GameObject>();
-            spawnedWalls.Add(SpawnVineWall());
+            // Spawn a wall ahead of the player
+            GameObject wall = SpawnVineWall();
+            Debug.Log("[TREE BOSS]: Vine wall spawned!");
 
-            // Remaining walls: random positions and orientations around the boss
-            for (int i = 1; i < wallCount; i++)
-            {
-                Vector2 rng = Random.insideUnitCircle * wallRandomRange;
-                Vector3 randomCenter = transform.position + new Vector3(rng.x, 0f, rng.y);
-                float randomAngle = Random.Range(0f, 360f);
-                Vector3 randomFacing = Quaternion.Euler(0, randomAngle, 0) * Vector3.forward;
-                spawnedWalls.Add(SpawnVineWallAt(randomCenter, randomFacing));
-            }
-            Debug.Log("[TREE BOSS]: Vine walls spawned! (" + wallCount + " walls)");
-
-            // All walls last for the same duration
+            // Wall lasts for a duration
             yield return new WaitForSeconds(wallDuration);
 
-            foreach (GameObject wall in spawnedWalls)
+            if (wall != null)
             {
-                if (wall != null)
-                {
-                    _activeWalls.Remove(wall);
-                    Destroy(wall);
-                }
+                _activeWalls.Remove(wall);
+                Destroy(wall);
             }
-            Debug.Log("[TREE BOSS]: Vine walls crumbled.");
+            Debug.Log("[TREE BOSS]: Vine wall crumbled.");
 
             // COOLDOWN
             yield return new WaitForSeconds(wallCooldown);
         }
     }
 
-    // Spawns a wall blocking the player's path
     private GameObject SpawnVineWall()
     {
         if (_player == null) return null;
 
+        // Get player's forward direction to place wall perpendicular to it
         Rigidbody playerRb = _player.GetComponent<Rigidbody>();
         Vector3 playerForward = Vector3.forward;
         if (playerRb != null && playerRb.linearVelocity.sqrMagnitude > 1f)
@@ -476,31 +404,28 @@ public class TreeBossController : MonoBehaviour, IMovementController
         playerForward.y = 0;
         playerForward.Normalize();
 
+        // Wall spawns ahead of the player
         Vector3 wallCenter = _player.transform.position + playerForward * wallSpawnDistance;
-        return SpawnVineWallAt(wallCenter, playerForward);
-    }
 
-    // Spawns a wall at any position facing any direction
-    private GameObject SpawnVineWallAt(Vector3 center, Vector3 facing)
-    {
-        facing.y = 0;
-        facing.Normalize();
+        // Wall direction is perpendicular to player's movement
+        Vector3 wallDirection = Vector3.Cross(Vector3.up, playerForward).normalized;
 
-        // Wall runs perpendicular to the facing direction
-        Vector3 wallDirection = Vector3.Cross(Vector3.up, facing).normalized;
-
+        // Parent object for all segments
         GameObject wallParent = new GameObject("VineWall");
 
+        // Calculate starting position (center the wall)
         float totalWidth = wallSegmentCount * wallSegmentWidth;
-        Vector3 startPos = center - wallDirection * (totalWidth / 2f);
+        Vector3 startPos = wallCenter - wallDirection * (totalWidth / 2f);
 
         for (int i = 0; i < wallSegmentCount; i++)
         {
             GameObject segment = GameObject.CreatePrimitive(PrimitiveType.Cube);
             segment.name = "VineWallSegment";
 
+            // Position this segment
             Vector3 segPos = startPos + wallDirection * (i * wallSegmentWidth + wallSegmentWidth / 2f);
 
+            // Raycast to find ground
             if (Physics.Raycast(segPos + Vector3.up * 50f, Vector3.down, out RaycastHit hit, 100f))
             {
                 segPos.y = hit.point.y + wallHeight / 2f;
@@ -508,15 +433,17 @@ public class TreeBossController : MonoBehaviour, IMovementController
 
             segment.transform.position = segPos;
             segment.transform.localScale = new Vector3(wallSegmentWidth, wallHeight, 1.5f);
-            segment.transform.rotation = Quaternion.LookRotation(facing);
+            segment.transform.rotation = Quaternion.LookRotation(playerForward);
             segment.transform.SetParent(wallParent.transform);
 
+            // Green material
             Material mat = new Material(Shader.Find("Universal Render Pipeline/Lit"));
             mat.SetColor("_BaseColor", wallColor);
             mat.EnableKeyword("_EMISSION");
             mat.SetColor("_EmissionColor", wallColor * 1.2f);
             segment.GetComponent<MeshRenderer>().material = mat;
 
+            // Attach VineWall script (no damage, just solid)
             segment.AddComponent<VineWall>();
         }
 
