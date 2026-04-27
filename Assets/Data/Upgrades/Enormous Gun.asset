@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Upgrade
   upgradeName: Enormous Gun
   rarity: 2
-  cardImage: {fileID: 0}
+  cardImage: {fileID: 2100000, guid: dd43a58e189344582accdea378b39ad2, type: 2}
   description: +3 Damage
   prerequisites:
   - {fileID: 11400000, guid: 74cb92e5d4dcb44909a7291b1048bea2, type: 2}

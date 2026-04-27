@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Upgrade
   upgradeName: Big Gun
   rarity: 0
-  cardImage: {fileID: 2100000, guid: 349570d1c7f9049fb96c1bfb48fd5e5a, type: 2}
+  cardImage: {fileID: 2100000, guid: 6e31273a778ce4acfba778f1a99619d4, type: 2}
   description: +2 Damage
   prerequisites: []

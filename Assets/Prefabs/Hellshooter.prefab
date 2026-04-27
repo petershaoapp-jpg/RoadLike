@@ -197,7 +197,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa8f60483444a4e88b389816f7c97306, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HellShooterController
-  detectionRange: 40
+  detectionRange: 100
   turnSpeed: 5
   burstCount: 3
   timeBetweenShots: 0.5

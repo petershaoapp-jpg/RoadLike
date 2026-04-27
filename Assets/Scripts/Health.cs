@@ -13,13 +13,14 @@ public class Health : MonoBehaviour
 
     private void Awake()
     {
+        if (gameObject.name == "Car") {
+            maxHealth =  data.maxHealth;
+        }
+        
         health = maxHealth;
         _dieScript = GetComponent<IDie>();
         _meshRenderer = GetComponent<MeshRenderer>();
-        
-        if (gameObject.name == "Car") {
-          maxHealth =  data.maxHealth;
-        }
+
     }
 
     public void Heal(int amount)

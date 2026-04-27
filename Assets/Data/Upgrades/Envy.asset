@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Upgrade
   upgradeName: Envy
   rarity: 4
-  cardImage: {fileID: 0}
+  cardImage: {fileID: 2100000, guid: 6588033e89e23435985d081d590acd7d, type: 2}
   description: +1 damage for every alive enemy
   prerequisites: []

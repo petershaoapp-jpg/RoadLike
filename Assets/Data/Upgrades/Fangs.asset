@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Upgrade
   upgradeName: Fangs
   rarity: 1
-  cardImage: {fileID: 0}
-  description: Heal 0.2% Max HP on hit
+  cardImage: {fileID: 2100000, guid: 6ae5ea7feb41b4b8f9c38287122cf32c, type: 2}
+  description: Heal 5% Max HP on hit
   prerequisites: []

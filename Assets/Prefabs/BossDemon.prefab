@@ -218,7 +218,7 @@ MonoBehaviour:
   walkSpeedMultiplier: 0.5
   chargeSpeedMultiplier: 10
   chargeDamage: 8
-  knockbackForce: 50
+  knockbackForce: 0
   dangerZoneWidth: 3
   segmentLength: 0.1
   dangerZoneColor: {r: 1, g: 0, b: 0, a: 0.35}

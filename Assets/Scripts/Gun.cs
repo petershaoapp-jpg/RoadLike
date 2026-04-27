@@ -109,7 +109,7 @@ public class Gun : MonoBehaviour
         // Fangs upgrade: heal on hit
         if (upgradeNames.Contains("Fangs"))
         {
-            health.Heal(health.maxHealth / 50);
+            health.Heal(health.maxHealth / 20);
         }
     }
 }

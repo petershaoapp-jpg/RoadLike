@@ -4208,12 +4208,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Radio
   songs:
-  - {fileID: 8300000, guid: aabbc91ef79f049c4ae8ff106f562965, type: 3}
+  - {fileID: 8300000, guid: 2b9259dcbcc864341b1eb016ae5bd823, type: 3}
   - {fileID: 8300000, guid: b8dd33128b0be43af998f3f1159621df, type: 3}
-  - {fileID: 8300000, guid: f64bb8279ed4247e09e1c7f467b0f899, type: 3}
+  - {fileID: 8300000, guid: f660ba55b9af24f868f1b03414ddbbaf, type: 3}
   - {fileID: 8300000, guid: 841f748a9403b4ab1b9899fcc6420480, type: 3}
   - {fileID: 8300000, guid: d9c39204c8c224e3fbbe61847a479c9f, type: 3}
-  - {fileID: 8300000, guid: 1158677cbdc574fe6b92215362958a22, type: 3}
+  - {fileID: 8300000, guid: 41d887c1a7ea7427abbe5558bc1d7a4c, type: 3}
   - {fileID: 8300000, guid: cc4ec350e6d3c4fc8950f6c7b733d8b4, type: 3}
 --- !u!4 &1529747050
 Transform:

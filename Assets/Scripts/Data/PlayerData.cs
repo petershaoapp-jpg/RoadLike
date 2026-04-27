@@ -6,7 +6,7 @@ public class PlayerData : ScriptableObject
 {
     // MISC DATA //
     public List<Upgrade> upgrades;   
-
+    public int level = 1;
 
     // UPGRADABLE STATS //
 

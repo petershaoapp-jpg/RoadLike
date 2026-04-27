@@ -20,8 +20,14 @@ public class LevelCompleteUI : MonoBehaviour
   [SerializeField] private PlayerData playerData;
   private UpgradeSelector _upgradeSelector;
   
+  private int[] sPlusTimes = {50,60,0,0,0,45};
+  
+  private void Start()
+  {
+    int level = playerData.level - 1;
 
-  private void Start() {
+    playerData.level++;
+    
     _upgradeSelector = GetComponent<UpgradeSelector>();
 
     int bonusRarityChance = playerData.luck;
@@ -30,22 +36,22 @@ public class LevelCompleteUI : MonoBehaviour
     
     float t = data.time;
     
-    if (t < 12) {
+    if (t < sPlusTimes[level]) {
       rank.text = "S+";
       bonusRarityChance += 215;
-    } else if (t < 15) {
+    } else if (t < sPlusTimes[level] * 1.1) {
       rank.text = "S";
       bonusRarityChance += 200;
-    } else if (t < 20) {
+    } else if (t < sPlusTimes[level] * 1.2) {
       rank.text = "A";
       bonusRarityChance += 175;
-    } else if (t  < 25) {
+    } else if (t  < sPlusTimes[level] * 1.3) {
       rank.text = "B";
       bonusRarityChance += 150;
-    } else if (t < 30) {
+    } else if (t < sPlusTimes[level] * 1.5) {
       rank.text = "C";
       bonusRarityChance += 125;
-    } else if (t < 35) {
+    } else if (t < sPlusTimes[level] * 1.7) {
       rank.text = "D";
       bonusRarityChance += 110;
     } else {
@@ -76,6 +82,6 @@ public class LevelCompleteUI : MonoBehaviour
 
   public void Retry() 
   {
-    SceneManager.LoadScene(1);
+    SceneManager.LoadScene(playerData.level);
   }
 }
