@@ -107,7 +107,8 @@ public class CarController : MonoBehaviour, IMovementController
         }
         else if (_throttle < -0.01f)
         {
-            if (speedKPH < 5f)
+            float forwardSpeed = Vector3.Dot(_rb.linearVelocity, transform.forward);
+            if (speedKPH < 5f || forwardSpeed < 0f)
             {
                 driveTorque = _throttle * reverseTorque;
             }
