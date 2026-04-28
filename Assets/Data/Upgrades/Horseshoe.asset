@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Upgrade
   upgradeName: Horseshoe
   rarity: 2
-  cardImage: {fileID: 0}
+  cardImage: {fileID: 2100000, guid: 11d27b3c9916f49e8af4a5d2f06c23a1, type: 2}
   description: Gain 1 Acceleration for every Luck
   prerequisites: []

@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Upgrade
   upgradeName: Jackpot!
   rarity: 3
-  cardImage: {fileID: 0}
+  cardImage: {fileID: 2100000, guid: 1325f1aa0d0ed4dd6bd8bfa23adb49f8, type: 2}
   description: +7 Luck\n+7 Crit Chance\n+7 Crit Damage
   prerequisites: []

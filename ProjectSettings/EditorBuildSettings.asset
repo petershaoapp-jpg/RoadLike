@@ -18,17 +18,17 @@ EditorBuildSettings:
     path: Assets/Scenes/Level 3.unity
     guid: 85cc333a237c44e1a80acee2dbf9f5b7
   - enabled: 1
+    path: Assets/Scenes/Level 4.unity
+    guid: dc1181368d0204bdab765994484ba2f0
+  - enabled: 1
     path: Assets/Scenes/Level 6.unity
     guid: 7417b2f91e10948ab9af3bd3ff38f083
   - enabled: 1
     path: Assets/Scenes/Bossfight.unity
     guid: a059d00626a5c4a5d94d547036810f11
-  - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
-    guid: 99c9720ab356a0642a771bea13969a05
-  - enabled: 0
-    path: Assets/Scenes/Hard Level.unity
-    guid: 94c26b57a241b4ead9f8d53038c99645
+  - enabled: 1
+    path: Assets/Scenes/You Win.unity
+    guid: 18e663c66294f46b291ed024f5c76f4f
   - enabled: 1
     path: Assets/Scenes/LevelComplete.unity
     guid: 1e739e192fea94dd2b5b4cc768e3edc4

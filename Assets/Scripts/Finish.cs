@@ -12,7 +12,13 @@ public class Finish : MonoBehaviour
   }
 
   private void OnTriggerEnter(Collider other) {
-    if (other.name != "Car") return; 
+    if (other.name != "Car") return;
+
+    if (SceneManager.GetActiveScene().name == "Bossfight")
+    {
+      SceneManager.LoadScene(SceneManager.sceneCountInBuildSettings - 2);
+      return;
+    }
 
     int minutes = (int)Mathf.Floor(_timer.time / 60);
     int seconds = (int)Mathf.Floor(_timer.time % 60);
