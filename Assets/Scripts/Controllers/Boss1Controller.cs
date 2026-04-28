@@ -19,7 +19,7 @@ public class BossChargeController : MonoBehaviour, IMovementController
 
     [Header("Charge Damage")]
     [SerializeField] private int chargeDamage = 30;
-    [SerializeField] private float knockbackForce = 50f;
+    [SerializeField] private float knockbackForce = 18f;
 
     [Header("Danger Zone")]
     [SerializeField] private float dangerZoneWidth = 3f;
