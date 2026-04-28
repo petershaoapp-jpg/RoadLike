@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class ZombieController : MonoBehaviour, IMovementController
@@ -14,5 +15,10 @@ public class ZombieController : MonoBehaviour, IMovementController
         
         Vector3 direction = _player.transform.position - transform.position;
         return direction.normalized;
+    }
+
+    private void Update()
+    {
+        transform.LookAt(_player.transform);
     }
 }
