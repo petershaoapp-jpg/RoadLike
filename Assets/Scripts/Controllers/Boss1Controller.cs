@@ -231,20 +231,8 @@ public class BossChargeController : MonoBehaviour, IMovementController
         {
             Vector3 knockDirection = (collision.transform.position - transform.position).normalized;
             knockDirection.y = 0;
-            knockDirection += Vector3.up * 0.3f; // Slight upward lift so the car gets "launched"
+            knockDirection += Vector3.up * 0.3f;
             playerRb.AddForce(knockDirection * knockbackForce, ForceMode.Impulse);
-
-            // Clamp velocity so the car doesn't fly too far from physics collision
-            Vector3 vel = playerRb.linearVelocity;
-            vel.y = Mathf.Min(vel.y, maxLaunchY);
-            Vector2 horizontal = new Vector2(vel.x, vel.z);
-            if (horizontal.magnitude > maxLaunchHorizontal)
-            {
-                horizontal = horizontal.normalized * maxLaunchHorizontal;
-                vel.x = horizontal.x;
-                vel.z = horizontal.y;
-            }
-            playerRb.linearVelocity = vel;
         }
     }
 
