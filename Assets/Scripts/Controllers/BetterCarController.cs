@@ -8,15 +8,15 @@ public class BetterCarController : MonoBehaviour, IMovementController
 {
     // Make adjustable parameters
     [Header("Keep as a low number 2-3")]
-    [SerializeField] private float maxThrottle = 20;
+    [SerializeField] private float maxThrottle = 3;
     [Header("Max speed in mph that matches with spedometer")]
     [SerializeField] private float maxSpeedMph = 45;
     [Header("How fast car turns\ncan be used to increase/decrease steering angle")]
-    [SerializeField] private float turnSpeed = 50;
+    [SerializeField] private float turnSpeed = 80;
     [Header("Handling of the car, how well it 'sticks' to turning")]
-    [SerializeField] private float handling = 50f;
+    [SerializeField] private float handling = 120;
     [Header("Acceleration, self explanatory")]
-    [SerializeField] private float acceleration = 10;
+    [SerializeField] private float acceleration = 3;
 
     // other vars and stuff
     private InputAction _moveAction;
@@ -66,11 +66,18 @@ public class BetterCarController : MonoBehaviour, IMovementController
         }
 
         // Apply grip on fixed update so car doesn't slide around
+        //TODO figure out how to make drifting work, this linear velocity thing below
+        //TODO      accounts for a lot of it, because it is outside the if throttle... thing
+        //TODO      then it applies grip every frame which stops drifting, but needs to be outside
+        //TODO      of the if throttle... because then at max speed car loses grip
         Vector3 forwardVelocity = transform.forward * _rb.linearVelocity.magnitude;
-        _rb.linearVelocity = Vector3.Lerp(_rb.linearVelocity, forwardVelocity, Time.fixedDeltaTime * handling);
+        if (!_drifting)
+        {
+            _rb.linearVelocity = Vector3.Lerp(_rb.linearVelocity, forwardVelocity, Time.fixedDeltaTime * handling);
+        }
 
         // If there is input to move/if we are able to move
-        if (_throttle > 0.001f && _throttle < maxThrottle && _rb.linearVelocity.magnitude < maxSpeedMph)
+        if (_throttle > 0.001f && _throttle < maxThrottle && _rb.linearVelocity.magnitude <= maxSpeedMph)
         {
             turnSpeed = _bTurnSpeed;
 
