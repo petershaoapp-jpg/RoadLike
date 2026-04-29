@@ -26,7 +26,6 @@ public class BetterCarController : MonoBehaviour, IMovementController
     private Vector2 _inputMovement;
     private Vector2 _steerAngle;
     private AudioSource _audioSource;
-    private float _driftAmount;
     private bool _drifting;
     private float _bTurnSpeed;
     
@@ -40,7 +39,6 @@ public class BetterCarController : MonoBehaviour, IMovementController
         _rb = GetComponent<Rigidbody>();
         _moveAction = InputSystem.actions.FindAction("Move");
         _driftAction = InputSystem.actions.FindAction("Drift");
-        _rb.linearDamping = 3f;
         _bTurnSpeed = turnSpeed;
     }
 
@@ -67,22 +65,16 @@ public class BetterCarController : MonoBehaviour, IMovementController
             );
         }
 
+        // Apply grip on fixed update so car doesn't slide around
+        Vector3 forwardVelocity = transform.forward * _rb.linearVelocity.magnitude;
+        _rb.linearVelocity = Vector3.Lerp(_rb.linearVelocity, forwardVelocity, Time.fixedDeltaTime * handling);
+
         // If there is input to move/if we are able to move
         if (_throttle > 0.001f && _throttle < maxThrottle && _rb.linearVelocity.magnitude < maxSpeedMph)
         {
             turnSpeed = _bTurnSpeed;
-            // Make car move
-            // get the forward velocity of the car
-            Vector3 forwardVelocity = transform.forward * _rb.linearVelocity.magnitude;
-            // set the linear velocity of the car in a lerp of the current velocity and the forward velocity
-            if (!_drifting) 
-            {
-                _rb.linearVelocity = Vector3.Lerp(_rb.linearVelocity, forwardVelocity, Time.fixedDeltaTime * handling);
-            }
-            // make car go forward
-            //TODO work on making entering and exiting drifting smoother by lerping the drift direction and stuff
-            float driftDirection = Mathf.Clamp(_inputMovement.x, -1, 1);
-            /*
+
+            // if pressing drift button and moving sideways input
             if (_drifting && _inputMovement.x != 0)
             {
                 turnSpeed = turnSpeed * 1.5f;
@@ -100,7 +92,7 @@ public class BetterCarController : MonoBehaviour, IMovementController
             {
                 _rb.AddForce(transform.forward * (_throttle * 10) * acceleration, ForceMode.Acceleration);
             }
-            */
+            
 
             // update sound pitch based on speed
             _audioSource.pitch = _rb.linearVelocity.magnitude;
