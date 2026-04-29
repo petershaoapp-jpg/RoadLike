@@ -3217,9 +3217,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BetterCarController
   maxThrottle: 3
   maxSpeedMph: 45
-  turnSpeed: 120
-  handling: 90
-  acceleration: 15
+  turnSpeed: 80
+  handling: 120
+  acceleration: 3
 --- !u!1 &980488420
 GameObject:
   m_ObjectHideFlags: 0
