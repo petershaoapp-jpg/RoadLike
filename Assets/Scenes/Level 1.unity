@@ -881,7 +881,7 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: 0.102681175, y: -0.6996119, z: 0.10268121, w: 0.6996116}
-  m_LocalPosition: {x: 77.824234, y: 5.99999, z: 35.601906}
+  m_LocalPosition: {x: 80.36001, y: 3.54, z: 35.600014}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1570,7 +1570,7 @@ Transform:
   m_GameObject: {fileID: 665627775}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 1.72423, y: -0.00001, z: 11.50189}
+  m_LocalPosition: {x: 4.26, y: -2.46, z: 11.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2870,9 +2870,8 @@ GameObject:
   - component: {fileID: 965271173}
   - component: {fileID: 965271172}
   - component: {fileID: 965271171}
-  - component: {fileID: 965271178}
+  - component: {fileID: 965271187}
   - component: {fileID: 965271177}
-  - component: {fileID: 965271176}
   - component: {fileID: 965271175}
   - component: {fileID: 965271174}
   - component: {fileID: 965271179}
@@ -3010,23 +3009,8 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
-  m_Constraints: 0
+  m_Constraints: 4
   m_CollisionDetection: 1
---- !u!114 &965271176
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 965271169}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f2cfbf445375334b90040f813724d72, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Move
-  speed: 250000
-  maxSpeed: 100
-  data: {fileID: 11400000, guid: 28c6d0b1cf43945088c18d541c0c2d82, type: 2}
 --- !u!114 &965271177
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3039,62 +3023,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5203c8ae7c004645a28d902166168a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Ground
---- !u!114 &965271178
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 965271169}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b11d75f134a97c246bfc701100663068, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CarController
-  data: {fileID: 11400000, guid: 28c6d0b1cf43945088c18d541c0c2d82, type: 2}
-  wheelColliders:
-  - {fileID: 907854053}
-  - {fileID: 149492353}
-  - {fileID: 1148477526}
-  - {fileID: 463667714}
-  maxSteerAngle: 40
-  steerResponsiveness: 12
-  steerReturn: 8
-  speedToSteer:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 40
-      value: 0.35
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  accelTorque: 1600
-  reverseTorque: 1200
-  brakeTorque: 2200
-  coastBrake: 180
-  maxSpeedKPH: 220
-  lateralGripStiffness: 2.2
-  forwardGripStiffness: 1.6
-  downforcePerKPH: 0.5
-  yawStability: 3
-  inputSmoothing: 10
-  nitroMultiplier: 1.35
 --- !u!114 &965271179
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3275,6 +3203,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeEffects
   playerData: {fileID: 11400000, guid: 28c6d0b1cf43945088c18d541c0c2d82, type: 2}
   upgradeNames: []
+--- !u!114 &965271187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 965271169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6429b179d21c4f7aafee983fadf2711, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BetterCarController
+  maxThrottle: 3
+  maxSpeedMph: 45
+  turnSpeed: 120
+  handling: 90
+  acceleration: 15
 --- !u!1 &980488420
 GameObject:
   m_ObjectHideFlags: 0
@@ -3290,7 +3235,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &980488421
 Transform:
   m_ObjectHideFlags: 0
@@ -3592,7 +3537,7 @@ Transform:
   m_GameObject: {fileID: 1043122149}
   serializedVersion: 2
   m_LocalRotation: {x: 0.10268117, y: -0.69961184, z: 0.10268119, w: 0.69961166}
-  m_LocalPosition: {x: 77.824234, y: 5.99999, z: 35.601906}
+  m_LocalPosition: {x: 80.36001, y: 3.54, z: 35.600014}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

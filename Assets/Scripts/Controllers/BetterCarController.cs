@@ -28,6 +28,7 @@ public class BetterCarController : MonoBehaviour, IMovementController
     private AudioSource _audioSource;
     private float _driftAmount;
     private bool _drifting;
+    private float _bTurnSpeed;
     
     // using awake to make it get the things early
     private void Awake() 
@@ -40,6 +41,7 @@ public class BetterCarController : MonoBehaviour, IMovementController
         _moveAction = InputSystem.actions.FindAction("Move");
         _driftAction = InputSystem.actions.FindAction("Drift");
         _rb.linearDamping = 3f;
+        _bTurnSpeed = turnSpeed;
     }
 
     // Update is called once per frame
@@ -68,25 +70,37 @@ public class BetterCarController : MonoBehaviour, IMovementController
         // If there is input to move/if we are able to move
         if (_throttle > 0.001f && _throttle < maxThrottle && _rb.linearVelocity.magnitude < maxSpeedMph)
         {
+            turnSpeed = _bTurnSpeed;
             // Make car move
             // get the forward velocity of the car
             Vector3 forwardVelocity = transform.forward * _rb.linearVelocity.magnitude;
             // set the linear velocity of the car in a lerp of the current velocity and the forward velocity
             if (!_drifting) 
             {
-                //_rb.linearVelocity = Vector3.Lerp(_rb.linearVelocity, forwardVelocity, Time.fixedDeltaTime * handling);
+                _rb.linearVelocity = Vector3.Lerp(_rb.linearVelocity, forwardVelocity, Time.fixedDeltaTime * handling);
             }
             // make car go forward
-            if (_drifting)
+            //TODO work on making entering and exiting drifting smoother by lerping the drift direction and stuff
+            float driftDirection = Mathf.Clamp(_inputMovement.x, -1, 1);
+            /*
+            if (_drifting && _inputMovement.x != 0)
             {
-                _rb.AddForce(transform.right * (_throttle * 20) * acceleration, ForceMode.Acceleration);
-                _rb.AddForce(transform.forward * (_throttle * 5) * acceleration, ForceMode.Acceleration);
-
+                turnSpeed = turnSpeed * 1.5f;
+                if (_inputMovement.x < 0)
+                {
+                    _rb.AddForce(transform.forward + transform.right * (_throttle * 6) * acceleration, ForceMode.Acceleration);
+                }
+                else
+                {
+                    _rb.AddForce(transform.forward + (transform.right * -1) * (_throttle * 6) * acceleration, ForceMode.Acceleration);
+                }
+                _rb.AddForce(transform.forward * (_throttle * 8) * acceleration, ForceMode.Acceleration);
             }
             else
             {
                 _rb.AddForce(transform.forward * (_throttle * 10) * acceleration, ForceMode.Acceleration);
             }
+            */
 
             // update sound pitch based on speed
             _audioSource.pitch = _rb.linearVelocity.magnitude;
