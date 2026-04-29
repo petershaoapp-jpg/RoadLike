@@ -20,6 +20,10 @@ public class BossChargeController : MonoBehaviour, IMovementController
     [Header("Charge Damage")]
     [SerializeField] private int chargeDamage = 30;
     [SerializeField] private float knockbackForce = 18f;
+    [Tooltip("Max upward velocity after collision to prevent car flying into sky")]
+    [SerializeField] private float maxLaunchY = 2f;
+    [Tooltip("Max horizontal speed after collision to prevent car flying too far")]
+    [SerializeField] private float maxLaunchHorizontal = 15f;
 
     [Header("Danger Zone")]
     [SerializeField] private float dangerZoneWidth = 3f;
@@ -227,7 +231,7 @@ public class BossChargeController : MonoBehaviour, IMovementController
         {
             Vector3 knockDirection = (collision.transform.position - transform.position).normalized;
             knockDirection.y = 0;
-            knockDirection += Vector3.up * 0.3f; // Slight upward lift so the car gets "launched"
+            knockDirection += Vector3.up * 0.3f;
             playerRb.AddForce(knockDirection * knockbackForce, ForceMode.Impulse);
         }
     }

@@ -217,7 +217,7 @@ MonoBehaviour:
   restTime: 3
   walkSpeedMultiplier: 0.5
   chargeSpeedMultiplier: 10
-  chargeDamage: 8
+  chargeDamage: 6
   knockbackForce: 0
   dangerZoneWidth: 3
   segmentLength: 0.1
