@@ -4,7 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(IDie))]
 public class Health : MonoBehaviour
 {
-    public int maxHealth = 100; // for customizablility
+    public float maxHealth = 100; // for customizablility
     [SerializeField] private PlayerData data;
     public float health { get; private set; } // public to get, not public to set
 
@@ -23,9 +23,11 @@ public class Health : MonoBehaviour
 
     }
 
-    public void Heal(int amount)
+    public void Heal(float amount)
     {
         if (amount <= 0) return;
+        
+        Debug.Log("[HEALING] " + amount);
 
         health += amount;
         if (health > maxHealth)

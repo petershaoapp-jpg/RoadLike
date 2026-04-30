@@ -15,5 +15,5 @@ MonoBehaviour:
   upgradeName: Fangs
   rarity: 1
   cardImage: {fileID: 2100000, guid: 6ae5ea7feb41b4b8f9c38287122cf32c, type: 2}
-  description: Heal 5% Max HP on hit
+  description: Heal 1% Max HP on hit
   prerequisites: []

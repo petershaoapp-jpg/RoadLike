@@ -92,7 +92,7 @@ public class Gun : MonoBehaviour
 
         if (Random.Range(1, 100) < playerData.critChance)
         {
-            damage *= 2f + (playerData.critDamage / 100f);
+            damage *= 2f + playerData.critDamage / 100f;
             Debug.Log("[GUN]: CRITICAL HIT! Damage: " + damage);
         }
         else
@@ -109,7 +109,7 @@ public class Gun : MonoBehaviour
         // Fangs upgrade: heal on hit
         if (upgradeNames.Contains("Fangs"))
         {
-            health.Heal(health.maxHealth / 20);
+            health.Heal(health.maxHealth / 100);
         }
     }
 }
