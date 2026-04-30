@@ -16,8 +16,10 @@ public class PlayerData : ScriptableObject
     public int luck = 0;
     
     // Car stats
-    public float maxSpeed = 30;
-    public float speed = 0;
+    public float maxSpeed = 45;
+    public float speed = 30;
+    public float acceleration = 3.5f;
+    public float handling = 80;
     // TODO: Add "handling" (how easy it is to control car)
 
     // Nitro stats

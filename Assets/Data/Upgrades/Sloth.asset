@@ -15,6 +15,6 @@ MonoBehaviour:
   upgradeName: Sloth
   rarity: 4
   cardImage: {fileID: 0}
-  description: X10 Nitro Replenish Speed\nYou CANNOT drive the gar besides nitro
-    boosting
+  description: X2 Max HP\nX2 Nitro Replenish Speed\nYou CANNOT drive the gar besides
+    nitro boosting
   prerequisites: []

@@ -16,7 +16,7 @@ public class UpgradeEffects : MonoBehaviour
         _health = GetComponent<Health>();
         
         // Base stats
-        playerData.maxSpeed = 30;
+        playerData.maxSpeed = 45;
         playerData.maxHealth = 20;
         playerData.nitroReplenishTime = 10;
         playerData.maxNitros = 3;
@@ -24,6 +24,8 @@ public class UpgradeEffects : MonoBehaviour
         playerData.critDamage = 2;
         playerData.attack = 5;
         playerData.speed = 0;
+        playerData.handling = 80;
+        playerData.acceleration = 3.5f;
         
         upgradeNames = playerData.upgrades.ConvertAll(data => data.name);
 
@@ -70,7 +72,8 @@ public class UpgradeEffects : MonoBehaviour
 
         if (upgradeNames.Contains("Better Wheels"))
         {
-            playerData.maxSpeed += 500;
+            playerData.acceleration += 1;
+            playerData.maxSpeed += 10;
         }
         
         if (upgradeNames.Contains("Bad Omen"))
@@ -133,7 +136,7 @@ public class UpgradeEffects : MonoBehaviour
         // Late trigger
         if (upgradeNames.Contains("Horseshoe"))
         {
-            playerData.speed += playerData.luck;
+            playerData.maxSpeed += playerData.luck;
         }
         
         // Last trigger
@@ -155,12 +158,18 @@ public class UpgradeEffects : MonoBehaviour
             playerData.maxHealth /= 2;
         }
 
+        if (upgradeNames.Contains("Pride"))
+        {
+            playerData.maxSpeed = 10000; // Good luck
+        }
+
         if (upgradeNames.Contains("Sloth"))
         {
             playerData.maxSpeed = 0;
             playerData.nitroReplenishTime /= 2;
+            playerData.maxHealth *= 2;
         }
-
+        
         baseDamage = playerData.attack;
     }
 

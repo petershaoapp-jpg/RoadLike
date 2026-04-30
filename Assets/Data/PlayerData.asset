@@ -12,14 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90d83bd692e6b4fbb866d1da0580beb9, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: Assembly-CSharp::PlayerData
-  upgrades: []
-  level: 1
-  maxHealth: 20
+  upgrades:
+  - {fileID: 11400000, guid: 2ce84d00493f944d7ba7e55c70243fe9, type: 2}
+  - {fileID: 11400000, guid: 65a91f53a4eee474e8dabc76da3a67a0, type: 2}
+  level: 3
+  maxHealth: 40
   luck: 258
-  maxSpeed: 30
+  maxSpeed: 0
   speed: 0
+  acceleration: 4.5
+  handling: 80
   maxNitros: 3
-  nitroReplenishTime: 10
+  nitroReplenishTime: 5
   attack: 5
   critChance: 20
   critDamage: 2

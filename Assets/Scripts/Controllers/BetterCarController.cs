@@ -4,18 +4,21 @@ using UnityEngine.InputSystem;
 public class BetterCarController : MonoBehaviour, IMovementController
 {
     // Tunable parameters
+    [Header("Data")]
+    [SerializeField] private PlayerData data;
+    
     [Header("Throttle")]
     [Tooltip("Keep as a low number 2-3")]
     [SerializeField] private float maxThrottle = 3;
     [Tooltip("Max speed in mph that matches with the speedometer")]
-    [SerializeField] private float maxSpeedMph = 45;
+    [SerializeField] private float maxSpeedMph;
 
     [Header("Steering")]
     [Tooltip("How fast car turns. Used to increase/decrease steering angle")]
     [SerializeField] private float turnSpeed = 70;
     [Tooltip("Handling of the car, how well it 'sticks' to turning")]
-    [SerializeField] private float handling = 80;
-    [SerializeField] private float acceleration = 3.5f;
+    [SerializeField] private float handling;
+    [SerializeField] private float acceleration;
 
     [Header("Drift Tuning")]
     [SerializeField] private float driftMaxAngle = 20;
@@ -59,6 +62,10 @@ public class BetterCarController : MonoBehaviour, IMovementController
         _driftAction = InputSystem.actions.FindAction("Drift");
         _baseTurnSpeed = turnSpeed;
 
+        handling = data.handling;
+        acceleration = data.acceleration;
+        maxSpeedMph = data.maxSpeed;
+        
         // Doing this so car doesn't do weird stuff with rotation of the model
         if (carVisual != null)
             _visualBaseRotation = carVisual.localRotation;

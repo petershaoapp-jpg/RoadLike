@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6e501f47748c14134a2398cdfa63328e, type: 3}
-  m_Name: Horseshoe
+  m_Name: Pride
   m_EditorClassIdentifier: Assembly-CSharp::Upgrade
-  upgradeName: Horseshoe
-  rarity: 2
-  cardImage: {fileID: 2100000, guid: 11d27b3c9916f49e8af4a5d2f06c23a1, type: 2}
-  description: Gain 1 Max Speed for every Luck
+  upgradeName: Pride
+  rarity: 4
+  cardImage: {fileID: 0}
+  description: Removes speed cap\nGood luck!
   prerequisites: []

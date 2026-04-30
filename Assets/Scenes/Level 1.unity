@@ -3215,8 +3215,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6429b179d21c4f7aafee983fadf2711, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BetterCarController
+  data: {fileID: 11400000, guid: 28c6d0b1cf43945088c18d541c0c2d82, type: 2}
   maxThrottle: 3
-  maxSpeedMph: 45
+  maxSpeedMph: 100
   turnSpeed: 70
   handling: 80
   acceleration: 3.5
