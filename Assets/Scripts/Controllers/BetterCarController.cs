@@ -85,7 +85,7 @@ public class BetterCarController : MonoBehaviour, IMovementController
 
         float heldRate = _drifting ? driftBlendSpeed : driftReleaseBlendSpeed;
         _driftHeldBlend = Mathf.MoveTowards(_driftHeldBlend, driftHeldTarget, Time.deltaTime * heldRate);
-
+        
         // Car tilt
         if (carVisual != null)
         {
