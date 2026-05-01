@@ -434,8 +434,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2280292709121551450}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.102681234, y: -0.6996117, z: 0.102681234, w: 0.6996117}
-  m_LocalPosition: {x: 45.85279, y: 6.459939, z: 25.808693}
+  m_LocalRotation: {x: 0.10268114, y: 0.6996119, z: -0.10268117, w: 0.6996116}
+  m_LocalPosition: {x: -440, y: 6, z: -3.999999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -646,7 +646,7 @@ WheelCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_ProvidesContacts: 0
 --- !u!1 &2686160961452848187
 GameObject:
@@ -718,7 +718,7 @@ WheelCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_ProvidesContacts: 0
 --- !u!1 &3335188038574316448
 GameObject:
@@ -862,7 +862,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6154548541807855548
 Transform:
   m_ObjectHideFlags: 0
@@ -1077,7 +1077,7 @@ WheelCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_ProvidesContacts: 0
 --- !u!1 &7187112876271409535
 GameObject:
@@ -1149,7 +1149,7 @@ WheelCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_ProvidesContacts: 0
 --- !u!1 &7933978647610261631
 GameObject:
