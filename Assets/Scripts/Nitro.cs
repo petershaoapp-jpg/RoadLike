@@ -10,6 +10,8 @@ public class Nitro : MonoBehaviour
     private InputAction _nitroInput;
     private Rigidbody _rb;
     [SerializeField] private PlayerData data;
+    private AudioSource _audio;
+    [SerializeField] private AudioClip sfx;
 
     private void Start()
     {
@@ -18,6 +20,8 @@ public class Nitro : MonoBehaviour
         _rb = GetComponent<Rigidbody>();
 
         _nitroInput.performed += ActivateNitro;
+        
+        _audio = GetComponent<AudioSource>();
     }
 
     private void ActivateNitro(InputAction.CallbackContext callbackContext)
@@ -26,6 +30,7 @@ public class Nitro : MonoBehaviour
         {
             nitros--;
             _rb.AddForce(transform.forward * nitroBoost, ForceMode.Impulse);
+            _audio.PlayOneShot(sfx);
             StartCoroutine(ReplenishNitro());
         }
     }
