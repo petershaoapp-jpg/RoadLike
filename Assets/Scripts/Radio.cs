@@ -56,7 +56,7 @@ public class Radio : MonoBehaviour
   // Update is called once per frame
   void Update()
   {
-    if (SceneManager.GetActiveScene().name == "TitleScreen")
+    if (SceneManager.GetActiveScene().name == "TitleScreen" || SceneManager.GetActiveScene().name == "You Win")
     {
       _instance = null;
       Destroy(gameObject);
