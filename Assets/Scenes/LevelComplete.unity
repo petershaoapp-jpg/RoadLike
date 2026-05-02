@@ -528,12 +528,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeSelector
   upgrades:
-  - {fileID: 11400000, guid: 2ce84d00493f944d7ba7e55c70243fe9, type: 2}
-  - {fileID: 11400000, guid: 8118011bbe7114d6790d13d3bd746180, type: 2}
-  - {fileID: 11400000, guid: 66bc0640fc3834c98a87cea051774300, type: 2}
-  - {fileID: 11400000, guid: 3a2912464ddba4513b24da6b759481d1, type: 2}
-  - {fileID: 11400000, guid: 9e37e448b46ea49b6b772cf82b137edb, type: 2}
-  - {fileID: 11400000, guid: 57fc8d42c40c940e089fa58f9d59e47c, type: 2}
   - {fileID: 11400000, guid: dca204808e7084e83a2e29957aa0fdc4, type: 2}
   - {fileID: 11400000, guid: c4c879fdd47f44f5aa9cb7027e5b57b7, type: 2}
   - {fileID: 11400000, guid: 440efbb4c362a45bfb36562efc82b972, type: 2}
