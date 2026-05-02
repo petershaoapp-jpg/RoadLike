@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Upgrade
   upgradeName: Pride
   rarity: 4
-  cardImage: {fileID: 0}
+  cardImage: {fileID: 2100000, guid: 67cdb6b7f211746c3b98be45626ce452, type: 2}
   description: Removes speed cap\nGood luck!
   prerequisites: []
