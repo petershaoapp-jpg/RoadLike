@@ -10,6 +10,8 @@ public class Health : MonoBehaviour
 
     private IDie _dieScript;
     private MeshRenderer _meshRenderer;
+    private AudioSource _audioSource;
+    [SerializeField] private AudioClip damage;
 
     private void Awake()
     {
@@ -21,6 +23,7 @@ public class Health : MonoBehaviour
         _dieScript = GetComponent<IDie>();
         _meshRenderer = GetComponent<MeshRenderer>();
 
+        _audioSource = GetComponent<AudioSource>();
     }
 
     public void Heal(float amount)
@@ -39,7 +42,11 @@ public class Health : MonoBehaviour
     public void TakeDamage(float amount)
     {
         if (amount <= 0) return;
-
+        
+        if (gameObject.name == "Car") {
+            _audioSource.PlayOneShot(damage);
+        }
+        
         health -= amount;
 
         StartCoroutine(DamageEffect());

@@ -216,6 +216,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Health
   maxHealth: 20
   data: {fileID: 0}
+  damage: {fileID: 0}
 --- !u!114 &3283812204266706981
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -241,6 +242,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ZombieAttack
   damageAmount: 2
+  _damageSound: {fileID: 8300000, guid: 30d905ef61f18354b811d090d6aafa57, type: 3}
 --- !u!82 &6119961376914612416
 AudioSource:
   m_ObjectHideFlags: 0

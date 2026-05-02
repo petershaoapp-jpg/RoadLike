@@ -296,6 +296,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Health
   maxHealth: 20
   data: {fileID: 11400000, guid: 28c6d0b1cf43945088c18d541c0c2d82, type: 2}
+  damage: {fileID: 8300000, guid: fe05aadf0a96c344c804af65889f4ac9, type: 3}
 --- !u!82 &2721228930683961315
 AudioSource:
   m_ObjectHideFlags: 0
@@ -435,8 +436,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2280292709121551450}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.14521319, y: 0.000000003712066, z: -5.4481575e-10, w: 0.98940045}
-  m_LocalPosition: {x: -16.74984, y: 6.4600306, z: 240.91855}
+  m_LocalRotation: {x: 0.10268114, y: 0.6996119, z: -0.10268117, w: 0.6996116}
+  m_LocalPosition: {x: -440, y: 6, z: -3.999999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1285,6 +1286,7 @@ MonoBehaviour:
   targetRange: 50
   upgradeNames: []
   health: {fileID: 3425185516245290887}
+  _critSound: {fileID: 0}
 --- !u!82 &2208393459406927132
 AudioSource:
   m_ObjectHideFlags: 0

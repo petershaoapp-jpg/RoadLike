@@ -28,6 +28,9 @@ public class HellShooterController : MonoBehaviour, IMovementController
 
     private GameObject _player;
     private bool _isShooting = false;
+    
+    private AudioSource _audioSource;
+    [SerializeField] private AudioClip _damageSound;
 
     private void Start()
     {
@@ -38,6 +41,8 @@ public class HellShooterController : MonoBehaviour, IMovementController
         {
             firePoint = transform;
         }
+        
+        _audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -127,6 +132,8 @@ public class HellShooterController : MonoBehaviour, IMovementController
         {
             Physics.IgnoreCollision(bulletCollider, enemyCollider);
         }
+        
+        _audioSource.PlayOneShot(_damageSound);
     }
 
     // ========== IMovementController ==========
