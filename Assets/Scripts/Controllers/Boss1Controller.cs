@@ -48,7 +48,9 @@ public class BossChargeController : MonoBehaviour, IMovementController
     private void Update()
     {
         if (_player == null) return;
-
+        
+        transform.LookAt(_player.transform);
+        
         // Danger zone tracks the player during prep phase
         if (_isPrepping && _dangerZoneParent != null)
         {
