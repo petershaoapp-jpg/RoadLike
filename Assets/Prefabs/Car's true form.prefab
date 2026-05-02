@@ -241,6 +241,7 @@ MonoBehaviour:
   nitroBoost: 15000
   nitros: 0
   data: {fileID: 11400000, guid: 28c6d0b1cf43945088c18d541c0c2d82, type: 2}
+  sfx: {fileID: 8300000, guid: 7ed1d48e48229d54ea082487a0107748, type: 3}
 --- !u!114 &4667538311254321002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -295,6 +296,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Health
   maxHealth: 20
   data: {fileID: 11400000, guid: 28c6d0b1cf43945088c18d541c0c2d82, type: 2}
+  damage: {fileID: 8300000, guid: fe05aadf0a96c344c804af65889f4ac9, type: 3}
 --- !u!82 &2721228930683961315
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1284,6 +1286,7 @@ MonoBehaviour:
   targetRange: 50
   upgradeNames: []
   health: {fileID: 3425185516245290887}
+  _critSound: {fileID: 0}
 --- !u!82 &2208393459406927132
 AudioSource:
   m_ObjectHideFlags: 0

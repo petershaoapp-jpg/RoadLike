@@ -26,6 +26,7 @@ public class UpgradeEffects : MonoBehaviour
         playerData.speed = 0;
         playerData.handling = 80;
         playerData.acceleration = 3.5f;
+        playerData.luck = 0;
         
         upgradeNames = playerData.upgrades.ConvertAll(data => data.name);
 

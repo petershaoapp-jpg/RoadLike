@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Upgrade
   upgradeName: Sloth
   rarity: 4
-  cardImage: {fileID: 0}
+  cardImage: {fileID: 2100000, guid: cd2e663efdb514fd0842cbdcfff66447, type: 2}
   description: X2 Max HP\nX2 Nitro Replenish Speed\nYou CANNOT drive the gar besides
     nitro boosting
   prerequisites: []

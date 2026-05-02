@@ -533,6 +533,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c903cd36a64ff748abf41c5b6943ebf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ZombieController
+  clip: {fileID: 0}
 --- !u!23 &176788159
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3845,6 +3846,7 @@ MonoBehaviour:
   targetRange: 50
   upgradeNames: []
   health: {fileID: 965271182}
+  _crit: {fileID: 0}
 --- !u!82 &908260189
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4286,6 +4288,7 @@ MonoBehaviour:
   nitroBoost: 15000
   nitros: 0
   data: {fileID: 11400000, guid: 28c6d0b1cf43945088c18d541c0c2d82, type: 2}
+  sfx: {fileID: 0}
 --- !u!114 &965271180
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4565,19 +4568,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5142210001569221135, guid: f12154e34517e4976bb7387170a96cbc, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5142210001569221135, guid: f12154e34517e4976bb7387170a96cbc, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5142210001569221135, guid: f12154e34517e4976bb7387170a96cbc, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5142210001569221135, guid: f12154e34517e4976bb7387170a96cbc, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5142210001569221135, guid: f12154e34517e4976bb7387170a96cbc, type: 3}
       propertyPath: m_SizeDelta.x
@@ -4617,11 +4620,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5142210001569221135, guid: f12154e34517e4976bb7387170a96cbc, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 2
+      value: -402
       objectReference: {fileID: 0}
     - target: {fileID: 5142210001569221135, guid: f12154e34517e4976bb7387170a96cbc, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 2
+      value: 207
       objectReference: {fileID: 0}
     - target: {fileID: 5142210001569221135, guid: f12154e34517e4976bb7387170a96cbc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

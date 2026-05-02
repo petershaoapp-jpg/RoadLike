@@ -9,8 +9,15 @@ public class ZombieAttack : MonoBehaviour
     [SerializeField] private int damageAmount = 1;
 
     private Health _playerHealth;
+    private AudioSource _audioSource;
+    [SerializeField] private AudioClip _damageSound;
 
     private bool _canAttackPlayer;
+
+    private void Awake()
+    {
+        _audioSource = GameObject.Find("Audio manager").GetComponent<AudioSource>();
+    }
     
     // This function is automatically called by Unity upon a physics collision
     private void OnCollisionEnter(Collision collision)
@@ -44,9 +51,9 @@ public class ZombieAttack : MonoBehaviour
         if (_canAttackPlayer)
         {
             _playerHealth.TakeDamage(damageAmount);
+            _audioSource.PlayOneShot(_damageSound);
             Destroy(gameObject);
             yield return new WaitForSeconds(1);
-            StartCoroutine(DamageRoutine());
         }
     }
 }

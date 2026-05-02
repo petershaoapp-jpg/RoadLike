@@ -44,7 +44,6 @@ public class BetterCarController : MonoBehaviour, IMovementController
     private Rigidbody _rb;
     private float _throttle;
     private Vector2 _inputMovement;
-    private AudioSource _audioSource;
     private bool _drifting;
     private float _baseTurnSpeed;
     private float _driftBlend;
@@ -55,8 +54,6 @@ public class BetterCarController : MonoBehaviour, IMovementController
     // First things first
     private void Awake()
     {
-        _audioSource = GetComponent<AudioSource>();
-
         _rb = GetComponent<Rigidbody>();
         _moveAction = InputSystem.actions.FindAction("Move");
         _driftAction = InputSystem.actions.FindAction("Drift");
@@ -127,9 +124,6 @@ public class BetterCarController : MonoBehaviour, IMovementController
             turnSpeed = _baseTurnSpeed * Mathf.Lerp(1f, driftTurnMultiplier, _driftHeldBlend);
 
             _rb.AddForce(transform.forward * (_throttle * 10f) * acceleration, ForceMode.Acceleration);
-
-            // Update sound pitch based on speed
-            _audioSource.pitch = _rb.linearVelocity.magnitude;
         }
         else
         {

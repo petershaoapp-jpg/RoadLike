@@ -19,6 +19,7 @@ public class Gun : MonoBehaviour
 
     private AudioSource _audioSource;
     private Collider _currentTarget;
+    [SerializeField] private AudioClip _critSound;
 
     private void Start()
     {
@@ -94,6 +95,8 @@ public class Gun : MonoBehaviour
         {
             damage *= 2f + playerData.critDamage / 100f;
             Debug.Log("[GUN]: CRITICAL HIT! Damage: " + damage);
+            
+            _audioSource.PlayOneShot(_critSound);
         }
         else
         {
