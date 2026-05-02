@@ -241,7 +241,7 @@ MonoBehaviour:
   nitroBoost: 15000
   nitros: 0
   data: {fileID: 11400000, guid: 28c6d0b1cf43945088c18d541c0c2d82, type: 2}
-  sfx: {fileID: 8300000, guid: 8b83ca49e63fc164aaf9705ffda55a36, type: 3}
+  sfx: {fileID: 8300000, guid: 7ed1d48e48229d54ea082487a0107748, type: 3}
 --- !u!114 &4667538311254321002
 MonoBehaviour:
   m_ObjectHideFlags: 0
