@@ -34,10 +34,16 @@ public class VineAttack : MonoBehaviour
         }
 
         // Knockback: directly set velocity to launch the car
-        // Using linearVelocity instead of AddForce because WheelCollider physics overrides forces
+        // Stun the car briefly so BetterCarController doesn't immediately erase the velocity we set
         Rigidbody playerRb = other.gameObject.GetComponent<Rigidbody>();
         if (playerRb != null)
         {
+            BetterCarController carController = other.gameObject.GetComponent<BetterCarController>();
+            if (carController != null)
+            {
+                carController.Stun(0.5f);
+            }
+
             Vector3 knockDirection = (other.transform.position - transform.position).normalized;
             knockDirection.y = 0;
             knockDirection += Vector3.up * 0.5f;

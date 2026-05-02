@@ -39,6 +39,20 @@ public class BetterCarController : MonoBehaviour, IMovementController
     [Range(0f, 1f)]
     [SerializeField] private float baseLeanFactor = 0.4f;
 
+    [Header("Reverse")]
+    [Tooltip("Max reverse speed in mph (usually slower than forward max speed)")]
+    [SerializeField] private float maxReverseSpeed = 15f;
+
+    [Header("Steering Physics")]
+    [Tooltip("Below this forward speed, steering is reduced. Prevents spin-in-place. At negative speeds, steering inverts (real car feel)")]
+    [SerializeField] private float minSteerSpeed = 3f;
+
+    [Header("Collision Feedback")]
+    [Tooltip("Hits with relative velocity above this trigger a brief stun so the impact is visible")]
+    [SerializeField] private float collisionStunThreshold = 8f;
+    [Tooltip("How long control is disabled after a hard hit (seconds)")]
+    [SerializeField] private float collisionStunDuration = 0.3f;
+
     private InputAction _moveAction;
     private InputAction _driftAction;
     private Rigidbody _rb;
@@ -50,6 +64,7 @@ public class BetterCarController : MonoBehaviour, IMovementController
     private float _driftHeldBlend;
     private float _currentLean;
     private Quaternion _visualBaseRotation;
+    private float _stunTimer = 0f;
 
     // First things first
     private void Awake()
@@ -95,8 +110,19 @@ public class BetterCarController : MonoBehaviour, IMovementController
 
     private void FixedUpdate()
     {
-        // Slow down when no input
-        if (_inputMovement.y == 0 && _rb.linearVelocity.magnitude >= 0)
+        // While stunned, hand control over to the physics engine so external forces
+        // (knockback, hard collisions) actually move the car instead of being erased.
+        if (_stunTimer > 0f)
+        {
+            _stunTimer -= Time.fixedDeltaTime;
+            return;
+        }
+
+        // Compute SIGNED forward speed so reversing keeps its direction
+        float forwardSpeed = Vector3.Dot(_rb.linearVelocity, transform.forward);
+
+        // Slow down when there is no driver input on the throttle
+        if (Mathf.Abs(_throttle) < 0.01f && _rb.linearVelocity.magnitude > 0f)
         {
             _rb.linearVelocity = Vector3.Lerp(
                 _rb.linearVelocity,
@@ -105,12 +131,12 @@ public class BetterCarController : MonoBehaviour, IMovementController
             );
         }
 
-        // Smoother grip for drifting
-        float speed = _rb.linearVelocity.magnitude;
-        Vector3 forwardVelocity = transform.forward * speed;
+        // Build the target velocity (along forward / drift direction). Use signed forwardSpeed
+        // so negative speed means actually moving backward, not flipped to forward.
+        Vector3 forwardVelocity = transform.forward * forwardSpeed;
         float driftAngle = -_inputMovement.x * driftMaxAngle * _driftBlend;
         Vector3 driftDirection = Quaternion.Euler(0f, driftAngle, 0f) * transform.forward;
-        Vector3 driftVelocity = driftDirection * speed;
+        Vector3 driftVelocity = driftDirection * forwardSpeed;
         Vector3 targetVelocity = Vector3.Lerp(forwardVelocity, driftVelocity, _driftBlend);
 
         // lerping handling so car doesn't snap around when going in and out of drifts
@@ -118,23 +144,46 @@ public class BetterCarController : MonoBehaviour, IMovementController
         float currentHandling = Mathf.Lerp(handling, heldHandling, _driftHeldBlend);
         _rb.linearVelocity = Vector3.Lerp(_rb.linearVelocity, targetVelocity, Time.fixedDeltaTime * currentHandling);
 
-        // Apply throttle force while within speed cap
-        if (_throttle > 0.001f && _throttle < maxThrottle && _rb.linearVelocity.magnitude <= maxSpeedMph)
+        // Throttle: forward acceleration capped by maxSpeedMph
+        if (_throttle > 0.001f && _throttle < maxThrottle && forwardSpeed <= maxSpeedMph)
         {
-            turnSpeed = _baseTurnSpeed * Mathf.Lerp(1f, driftTurnMultiplier, _driftHeldBlend);
-
             _rb.AddForce(transform.forward * (_throttle * 10f) * acceleration, ForceMode.Acceleration);
         }
-        else
+        // Throttle: reverse acceleration capped by maxReverseSpeed (slower than forward)
+        else if (_throttle < -0.001f && forwardSpeed > -maxReverseSpeed)
         {
-            turnSpeed = _baseTurnSpeed * Mathf.Lerp(1f, driftTurnMultiplier, _driftHeldBlend);
+            _rb.AddForce(transform.forward * (_throttle * 10f) * acceleration, ForceMode.Acceleration);
         }
 
-        // Rotate car with steering angle
+        // Drift turn multiplier (was applied in both branches above; pull it out so it always runs)
+        turnSpeed = _baseTurnSpeed * Mathf.Lerp(1f, driftTurnMultiplier, _driftHeldBlend);
+
+        // Steering: scale by signed speed factor (no rotation when nearly stopped, inverted when reversing)
         float steerInput = _inputMovement.x;
-        float turnAmount = steerInput * turnSpeed * Time.fixedDeltaTime;
+        float speedFactor = Mathf.Clamp(forwardSpeed / minSteerSpeed, -1f, 1f);
+        float turnAmount = steerInput * turnSpeed * speedFactor * Time.fixedDeltaTime;
         Quaternion rotation = Quaternion.Euler(0f, turnAmount, 0f);
         _rb.MoveRotation(_rb.rotation * rotation);
+
+        // Kill residual angular velocity from collisions so the car doesn't keep spinning by itself.
+        // During stun, FixedUpdate returns early above so this line is skipped, letting hits visibly rotate the car.
+        _rb.angularVelocity = Vector3.zero;
+    }
+
+    // Briefly disable the controller's velocity / rotation override so external physics
+    // (knockback, ramp launches, collision response) can actually move the car.
+    public void Stun(float duration)
+    {
+        if (duration > _stunTimer) _stunTimer = duration;
+    }
+
+    // Auto-stun on hard impacts so collisions feel weighty
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.relativeVelocity.magnitude > collisionStunThreshold)
+        {
+            Stun(collisionStunDuration);
+        }
     }
 
     // ========== IMovementController ==========

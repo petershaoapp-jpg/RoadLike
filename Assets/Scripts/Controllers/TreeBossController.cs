@@ -364,7 +364,7 @@ public class TreeBossController : MonoBehaviour, IMovementController
         }
 
         zone.transform.position = new Vector3(position.x, groundY + 0.05f, position.z);
-        zone.transform.localScale = new Vector3(vineRadius * 2f, 0.02f, vineRadius * 2f);
+        zone.transform.localScale = new Vector3(vineRadius, 0.02f, vineRadius);
 
         // URP transparent material
         Material mat = new Material(Shader.Find("Universal Render Pipeline/Lit"));
