@@ -1195,6 +1195,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: TreeBoss
       objectReference: {fileID: 0}
+    - target: {fileID: 3090268012950579837, guid: 4379201cf31214a6c98e5de18c00d457, type: 3}
+      propertyPath: vineHeight
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3090268012950579837, guid: 4379201cf31214a6c98e5de18c00d457, type: 3}
+      propertyPath: vineRadius
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3090268012950579837, guid: 4379201cf31214a6c98e5de18c00d457, type: 3}
+      propertyPath: vineLingerTime
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 5778869391903353218, guid: 4379201cf31214a6c98e5de18c00d457, type: 3}
       propertyPath: m_LocalPosition.x
       value: 50
@@ -1237,7 +1249,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6853886108046678344, guid: 4379201cf31214a6c98e5de18c00d457, type: 3}
       propertyPath: maxHealth
-      value: 50
+      value: 200
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

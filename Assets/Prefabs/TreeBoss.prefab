@@ -208,6 +208,8 @@ MonoBehaviour:
   barrageProjectileDamage: 4
   barrageBulletSize: 3
   barrageBulletColor: {r: 0.6, g: 1, b: 0.2, a: 1}
+  vinePrefab: {fileID: 8557130500728793445, guid: a6ecc4bcd02804038a1a5c09ef83201a, type: 3}
+  wallSegmentPrefab: {fileID: 6590749317444019705, guid: 2cdcd3afc15d1418db387c78b1af014e, type: 3}
   vineCount: 4
   vineRandomRange: 40
   vineStrikeRange: 50

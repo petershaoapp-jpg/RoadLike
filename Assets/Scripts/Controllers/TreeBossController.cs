@@ -28,6 +28,15 @@ public class TreeBossController : MonoBehaviour, IMovementController
     [SerializeField] private Color barrageBulletColor = new Color(0.6f, 1f, 0.2f, 1f); // Sickly green
 
     // =============================================
+    //  ART PREFABS
+    // =============================================
+    [Header("Art Prefabs")]
+    [Tooltip("Prefab spawned for each vine strike. Must have a Collider (set as trigger), a Rigidbody (kinematic), and a VineAttack component.")]
+    [SerializeField] private GameObject vinePrefab;
+    [Tooltip("Prefab spawned for each segment of a vine wall. Must have a Collider (NOT a trigger) and a VineWall component.")]
+    [SerializeField] private GameObject wallSegmentPrefab;
+
+    // =============================================
     //  ABILITY 2: VINE STRIKE
     // =============================================
     [Header("Vine Strike Settings")]
@@ -374,10 +383,6 @@ public class TreeBossController : MonoBehaviour, IMovementController
 
     private GameObject SpawnVine(Vector3 position)
     {
-        // Vine is a tall cylinder that erupts from the ground
-        GameObject vine = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
-        vine.name = "VineStrike";
-
         // Find ground level - use only the XZ of target, raycast straight down
         Vector3 rayOrigin = new Vector3(position.x, 200f, position.z);
         float groundY = 0f;
@@ -389,25 +394,43 @@ public class TreeBossController : MonoBehaviour, IMovementController
             }
         }
 
-        // Position so the vine sticks up from the ground
-        vine.transform.position = new Vector3(position.x, groundY + vineHeight / 2f, position.z);
-        vine.transform.localScale = new Vector3(vineRadius * 0.5f, vineHeight / 2f, vineRadius * 0.5f);
+        GameObject vine;
 
-        // Green material with emission
-        Material mat = new Material(Shader.Find("Universal Render Pipeline/Lit"));
-        mat.SetColor("_BaseColor", vineColor);
-        mat.EnableKeyword("_EMISSION");
-        mat.SetColor("_EmissionColor", vineColor * 1.5f);
-        vine.GetComponent<MeshRenderer>().material = mat;
+        if (vinePrefab != null)
+        {
+            // Prefab's pivot is at the bottom of the mesh, so spawn directly on the ground
+            Vector3 prefabSpawnPos = new Vector3(position.x, groundY, position.z);
+            vine = Instantiate(vinePrefab, prefabSpawnPos, Quaternion.identity);
+            vine.transform.localScale = new Vector3(vineRadius * 0.5f, vineHeight / 2f, vineRadius * 0.5f);
+        }
+        else
+        {
+            // Fallback: original procedural cylinder. Cylinder primitive's pivot is at center, so offset by half height
+            Vector3 fallbackSpawnPos = new Vector3(position.x, groundY + vineHeight / 2f, position.z);
+            vine = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+            vine.name = "VineStrike";
+            vine.transform.position = fallbackSpawnPos;
+            vine.transform.localScale = new Vector3(vineRadius * 0.5f, vineHeight / 2f, vineRadius * 0.5f);
 
-        // Physics - kinematic so it doesn't fall
-        Rigidbody rb = vine.AddComponent<Rigidbody>();
-        rb.isKinematic = true;
+            Material mat = new Material(Shader.Find("Universal Render Pipeline/Lit"));
+            mat.SetColor("_BaseColor", vineColor);
+            mat.EnableKeyword("_EMISSION");
+            mat.SetColor("_EmissionColor", vineColor * 1.5f);
+            vine.GetComponent<MeshRenderer>().material = mat;
 
-        // Attach VineAttack script for damage
-        VineAttack attack = vine.AddComponent<VineAttack>();
-        attack.damage = vineStrikeDamage;
-        attack.knockbackForce = vineKnockbackForce;
+            Rigidbody rb = vine.AddComponent<Rigidbody>();
+            rb.isKinematic = true;
+
+            vine.AddComponent<VineAttack>();
+        }
+
+        // Inject damage parameters into the VineAttack component (works for both prefab and fallback)
+        VineAttack attack = vine.GetComponent<VineAttack>();
+        if (attack != null)
+        {
+            attack.damage = vineStrikeDamage;
+            attack.knockbackForce = vineKnockbackForce;
+        }
 
         _activeVines.Add(vine);
         return vine;
@@ -493,9 +516,6 @@ public class TreeBossController : MonoBehaviour, IMovementController
 
         for (int i = 0; i < wallSegmentCount; i++)
         {
-            GameObject segment = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            segment.name = "VineWallSegment";
-
             Vector3 segPos = startPos + wallDirection * (i * wallSegmentWidth + wallSegmentWidth / 2f);
 
             if (Physics.Raycast(segPos + Vector3.up * 50f, Vector3.down, out RaycastHit hit, 100f))
@@ -503,18 +523,34 @@ public class TreeBossController : MonoBehaviour, IMovementController
                 segPos.y = hit.point.y + wallHeight / 2f;
             }
 
-            segment.transform.position = segPos;
-            segment.transform.localScale = new Vector3(wallSegmentWidth, wallHeight, 1.5f);
-            segment.transform.rotation = Quaternion.LookRotation(facing);
+            Quaternion segRot = Quaternion.LookRotation(facing);
+            GameObject segment;
+
+            if (wallSegmentPrefab != null)
+            {
+                // Use the art prefab assigned in the inspector
+                segment = Instantiate(wallSegmentPrefab, segPos, segRot);
+                segment.transform.localScale = new Vector3(wallSegmentWidth, wallHeight, 1.5f);
+            }
+            else
+            {
+                // Fallback: original procedural cube if no prefab is assigned
+                segment = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                segment.name = "VineWallSegment";
+                segment.transform.position = segPos;
+                segment.transform.localScale = new Vector3(wallSegmentWidth, wallHeight, 1.5f);
+                segment.transform.rotation = segRot;
+
+                Material mat = new Material(Shader.Find("Universal Render Pipeline/Lit"));
+                mat.SetColor("_BaseColor", wallColor);
+                mat.EnableKeyword("_EMISSION");
+                mat.SetColor("_EmissionColor", wallColor * 1.2f);
+                segment.GetComponent<MeshRenderer>().material = mat;
+
+                segment.AddComponent<VineWall>();
+            }
+
             segment.transform.SetParent(wallParent.transform);
-
-            Material mat = new Material(Shader.Find("Universal Render Pipeline/Lit"));
-            mat.SetColor("_BaseColor", wallColor);
-            mat.EnableKeyword("_EMISSION");
-            mat.SetColor("_EmissionColor", wallColor * 1.2f);
-            segment.GetComponent<MeshRenderer>().material = mat;
-
-            segment.AddComponent<VineWall>();
         }
 
         _activeWalls.Add(wallParent);
