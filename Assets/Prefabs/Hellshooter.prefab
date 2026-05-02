@@ -173,7 +173,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyDie
   playerData: {fileID: 11400000, guid: 28c6d0b1cf43945088c18d541c0c2d82, type: 2}
   soul: {fileID: 6817343508767793957, guid: 6e4d4297c197a4509ace1b9c9fc0c754, type: 3}
-  die: {fileID: 8300000, guid: 5f67617993646f94683b6d87b4915646, type: 3}
+  die: {fileID: 8300000, guid: 30a78a2e722f2a642a906eb13729df4a, type: 3}
 --- !u!114 &6939344343993215675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -211,7 +211,7 @@ MonoBehaviour:
   bulletSize: 1
   bulletColor: {r: 1, g: 0.3, b: 0, a: 1}
   firePoint: {fileID: 0}
-  _damageSound: {fileID: 8300000, guid: 96b75ac15284d0746b3616309655e1b5, type: 3}
+  _damageSound: {fileID: 8300000, guid: 30a78a2e722f2a642a906eb13729df4a, type: 3}
 --- !u!82 &6927844426489026239
 AudioSource:
   m_ObjectHideFlags: 0
